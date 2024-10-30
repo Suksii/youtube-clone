@@ -11,7 +11,7 @@ const Header = () => {
   const [isFullWidth, setIsFullWidth] = useState(false);
 
   return (
-    <div className="w-full flex items-center justify-between px-4 py-2">
+    <div className="flex items-center justify-between gap-10 px-4 py-2">
       <div
         className={
           isFullWidth ? "hidden" : "flex flex-shrink-0 items-center md:gap-2"
@@ -22,8 +22,12 @@ const Header = () => {
         </Button>
         <p className="text-2xl font-semibold">YouTube</p>
       </div>
-      <div>
-        <Search setIsFullWidth={setIsFullWidth} isFullWidth={isFullWidth} />
+      <div
+        className={`${
+          isFullWidth ? "flex" : "hidden md:flex"
+        } flex-grow`}
+      >
+        <Search isFullWidth={isFullWidth} setIsFullWidth={setIsFullWidth} />
       </div>
       <div
         className={

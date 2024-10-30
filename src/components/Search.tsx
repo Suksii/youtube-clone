@@ -10,10 +10,7 @@ type SearchProps = {
 
 const Search: React.FC<SearchProps> = ({ isFullWidth, setIsFullWidth }) => {
   return (
-    <form
-      className={`${
-        isFullWidth ? "flex" : "hidden md:flex"
-      } flex-grow items-center gap-2`}
+    <form className="flex flex-grow justify-center items-center gap-4"
     >
       {isFullWidth && (
         <Button
@@ -29,15 +26,14 @@ const Search: React.FC<SearchProps> = ({ isFullWidth, setIsFullWidth }) => {
       <div className="flex flex-grow max-w-[600px]">
         <input
           type="search"
-          className="border border-secondary-border py-1 px-4 rounded-l-full focus:ring-1 ring-blue-600 outline-none"
+          className="w-full border border-secondary-border py-1 px-4 rounded-l-full focus:border focus:border-blue-600 outline-none"
           placeholder="Search"
         />
-        <Button className="py-2 px-4 rounded-r-full border border-l-0 border-secondary-border">
+        <Button className="py-1 px-4 rounded-r-full border border-l-0 border-secondary-border">
           <SearchIcon />
         </Button>
       </div>
-
-      <Button size="icon">
+      <Button size="icon" type="button">
         <MicIcon />
       </Button>
     </form>
