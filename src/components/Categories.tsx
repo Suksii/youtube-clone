@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
-import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
+import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
+import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 
 const Categories = () => {
   const categoryData = [
@@ -63,7 +63,7 @@ const Categories = () => {
       {isLeftArrowVisible && (
         <div className="w-24 h-full absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-to-r from-white from-50% to-transparent">
           <Button
-            className="aspect-square h-full w-auto"
+            className="aspect-square h-full w-auto p-1.5"
             variant="ghost"
             size="icon"
             type="button"
@@ -75,14 +75,14 @@ const Categories = () => {
               })
             }
           >
-            <ArrowBackIosNewOutlinedIcon />
+            <KeyboardArrowLeftOutlinedIcon />
           </Button>
         </div>
       )}
       {isRightArrowVisible && (
         <div className="w-24 h-full flex justify-end absolute right-0 top-1/2 -translate-y-1/2 bg-gradient-to-l from-white from-50% to-transparent">
           <Button
-            className="aspect-square h-full w-auto"
+            className="aspect-square h-full w-auto p-1.5"
             variant="ghost"
             size="icon"
             type="button"
@@ -98,7 +98,7 @@ const Categories = () => {
               });
             }}
           >
-            <ArrowForwardIosOutlinedIcon />
+            <KeyboardArrowRightOutlinedIcon />
           </Button>
         </div>
       )}
