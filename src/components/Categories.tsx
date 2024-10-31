@@ -10,7 +10,7 @@ const Categories = () => {
     "Javascript",
     "Programming",
     "React",
-    "Nest.js",
+    "Next.js",
     "Object Oriented Programming",
     "Web development",
     "Coding",
