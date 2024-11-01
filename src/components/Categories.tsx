@@ -42,7 +42,7 @@ const Categories = () => {
   }, [categoryData, translate]);
 
   return (
-    <div className="relative overflow-x-hidden" ref={containerRef}>
+    <div className="relative overflow-x-hidden pb-8" ref={containerRef}>
       <div
         className="flex whitespace-nowrap gap-2 w-fit transition-transform"
         style={{ transform: `translateX(-${translate}px)` }}

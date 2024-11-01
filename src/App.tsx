@@ -9,9 +9,10 @@ function App() {
       id: 1,
       title: "Create Spotify Clone Using React JS & Tailwind CSS",
       channel: "GreatStack",
+      channelImg: "",
       views: "109k",
       postedAt: "1 month ago",
-      thumbnailUrl: "",
+      thumbnailUrl: "https://i3.ytimg.com/vi/amFYvQK4huo/maxresdefault.jpg",
       videoUrl: "",
       duration: "59:47",
     },
@@ -19,16 +20,50 @@ function App() {
       id: 2,
       title: "Fabiano Caruana vs Garry Kasparov",
       channel: "agadmator's Chess Channel",
+      channelImg: "",
       views: "5,188",
       postedAt: "1 hour ago",
-      thumbnailUrl: "",
+      thumbnailUrl: "https://i3.ytimg.com/vi/JYm_RvV8MJM/maxresdefault.jpg",
+      videoUrl: "",
+      duration: "10:10",
+    },
+    {
+      id: 3,
+      title: "Fabiano Caruana vs Garry Kasparov",
+      channel: "agadmator's Chess Channel",
+      channelImg: "",
+      views: "5,188",
+      postedAt: "1 hour ago",
+      thumbnailUrl: "https://i3.ytimg.com/vi/JYm_RvV8MJM/maxresdefault.jpg",
+      videoUrl: "",
+      duration: "10:10",
+    },
+    {
+      id: 4,
+      title: "Fabiano Caruana vs Garry Kasparov",
+      channel: "agadmator's Chess Channel",
+      channelImg: "",
+      views: "5,188",
+      postedAt: "1 hour ago",
+      thumbnailUrl: "https://i3.ytimg.com/vi/JYm_RvV8MJM/maxresdefault.jpg",
+      videoUrl: "",
+      duration: "10:10",
+    },
+    {
+      id: 5,
+      title: "Fabiano Caruana vs Garry Kasparov",
+      channel: "agadmator's Chess Channel",
+      channelImg: "",
+      views: "5,188",
+      postedAt: "1 hour ago",
+      thumbnailUrl: "https://i3.ytimg.com/vi/JYm_RvV8MJM/maxresdefault.jpg",
       videoUrl: "",
       duration: "10:10",
     },
   ];
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col max-h-screen">
       <Header />
       <div className="grid grid-cols-[auto, 1fr] flex-grow overflow-auto">
         <div>Sidebar</div>
@@ -36,9 +71,9 @@ function App() {
           <div className="sticky top-0 z-20">
             <Categories />
           </div>
-          <div className="grid grid-cols-[repeat(auto-fill, minmax(300px, 1fr))] gap-4">
+          <div className="gap-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
             {videoData.map((video) => (
-              <VideoContainer key={video.id} />
+              <VideoContainer key={video.id} {...video} />
             ))}
           </div>
         </div>
