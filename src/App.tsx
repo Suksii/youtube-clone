@@ -1,6 +1,7 @@
 import "./App.css";
 import Categories from "./components/Categories";
 import Header from "./components/Header";
+import { Sidebar } from "./components/Sidebar";
 import VideoContainer from "./components/VideoContainer";
 
 function App() {
@@ -46,7 +47,8 @@ function App() {
       views: "5,188",
       postedAt: "1 hour ago",
       thumbnailUrl: "https://i3.ytimg.com/vi/JYm_RvV8MJM/maxresdefault.jpg",
-      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+      videoUrl:
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
       duration: "10:10",
     },
     {
@@ -57,7 +59,8 @@ function App() {
       views: "5,188",
       postedAt: "1 hour ago",
       thumbnailUrl: "https://i3.ytimg.com/vi/JYm_RvV8MJM/maxresdefault.jpg",
-      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+      videoUrl:
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
       duration: "10:10",
     },
   ];
@@ -65,8 +68,8 @@ function App() {
   return (
     <div className="flex flex-col max-h-screen">
       <Header />
-      <div className="grid grid-cols-[auto, 1fr] flex-grow overflow-auto">
-        <div>Sidebar</div>
+      <div className="grid grid-cols-[auto,1fr] flex-grow overflow-auto">
+        <Sidebar />
         <div className="overflow-hidden px-6 py-4">
           <div className="sticky top-0 z-20">
             <Categories />
