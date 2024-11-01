@@ -44,7 +44,9 @@ const VideoContainer = ({
       <a href={``} className="relative aspect-video">
         <img
           src={thumbnailUrl}
-          className="w-full h-full object-cover rounded-xl"
+          className={`${
+            isVideoPlaying ? "rounded-0" : "rounded-xl"
+          } transition-[border-radius] duration-200 w-full h-full object-cover`}
         />
         <div className="absolute bottom-1 right-1 bg-secondary-dark text-secondary text-sm p-0.5">
           {duration}
@@ -55,7 +57,7 @@ const VideoContainer = ({
           playsInline
           muted
           className={`absolute inset-0 block h-full object-contain ${
-            isVideoPlaying ? "opacity-100" : "opacity-0"
+            isVideoPlaying ? "opacity-100 delay-200" : "opacity-0"
           } transition-opacity duration-300`}
         />
       </a>
