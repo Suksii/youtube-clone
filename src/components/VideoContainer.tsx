@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from "react";
+
 type VideoProps = {
   id: number;
   title: string;
@@ -21,8 +23,24 @@ const VideoContainer = ({
   videoUrl,
   duration,
 }: VideoProps) => {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current === null) return;
+
+    if (isVideoPlaying) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play();
+    } else videoRef.current.pause();
+  }, [isVideoPlaying]);
+
   return (
-    <div className="flex flex-col gap-2">
+    <div
+      className="flex flex-col gap-2"
+      onMouseEnter={() => setIsVideoPlaying(true)}
+      onMouseLeave={() => setIsVideoPlaying(false)}
+    >
       <a href={``} className="relative aspect-video">
         <img
           src={thumbnailUrl}
@@ -31,6 +49,15 @@ const VideoContainer = ({
         <div className="absolute bottom-1 right-1 bg-secondary-dark text-secondary text-sm p-0.5">
           {duration}
         </div>
+        <video
+          ref={videoRef}
+          src={videoUrl}
+          playsInline
+          muted
+          className={`absolute inset-0 block h-full object-contain ${
+            isVideoPlaying ? "opacity-100" : "opacity-0"
+          } transition-opacity duration-300`}
+        />
       </a>
       <div className="flex gap-2">
         <a href={`/`} className="flex-shrink-0">

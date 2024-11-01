@@ -13,7 +13,7 @@ function App() {
       views: "109k",
       postedAt: "1 month ago",
       thumbnailUrl: "https://i3.ytimg.com/vi/amFYvQK4huo/maxresdefault.jpg",
-      videoUrl: "",
+      videoUrl: "https://www.youtube.com/watch?v=JYm_RvV8MJM&t=11s",
       duration: "59:47",
     },
     {
@@ -24,7 +24,7 @@ function App() {
       views: "5,188",
       postedAt: "1 hour ago",
       thumbnailUrl: "https://i3.ytimg.com/vi/JYm_RvV8MJM/maxresdefault.jpg",
-      videoUrl: "",
+      videoUrl: "https://www.youtube.com/watch?v=JYm_RvV8MJM&t=11s",
       duration: "10:10",
     },
     {
@@ -35,7 +35,7 @@ function App() {
       views: "5,188",
       postedAt: "1 hour ago",
       thumbnailUrl: "https://i3.ytimg.com/vi/JYm_RvV8MJM/maxresdefault.jpg",
-      videoUrl: "",
+      videoUrl: "https://www.youtube.com/watch?v=JYm_RvV8MJM&t=11s",
       duration: "10:10",
     },
     {
@@ -46,7 +46,7 @@ function App() {
       views: "5,188",
       postedAt: "1 hour ago",
       thumbnailUrl: "https://i3.ytimg.com/vi/JYm_RvV8MJM/maxresdefault.jpg",
-      videoUrl: "",
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
       duration: "10:10",
     },
     {
@@ -57,7 +57,7 @@ function App() {
       views: "5,188",
       postedAt: "1 hour ago",
       thumbnailUrl: "https://i3.ytimg.com/vi/JYm_RvV8MJM/maxresdefault.jpg",
-      videoUrl: "",
+      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
       duration: "10:10",
     },
   ];
