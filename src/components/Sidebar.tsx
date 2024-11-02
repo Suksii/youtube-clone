@@ -109,9 +109,39 @@ export const Sidebar = () => {
         ))}
       </div>
       <div className="lg:sticky absolute top-0 overflow-y-auto flex flex-col w-52 mx-2">
-        <LargeSidebarContainer title="Subscription">
+        <LargeSidebarContainer title="You">
+          {sideBarItems.map((item) => (
+            <LargeSidebarItem
+              key={item.name}
+              name={item.name}
+              url={item.url}
+              icon={item.icon}
+              isActive={false}
+            />
+          ))}
+        </LargeSidebarContainer>
+        <hr />
+        <LargeSidebarContainer title="You">
           {subscriptions.map((subs) => (
-            <LargeSidebarItem name={subs.name} icon={subs.img} isActive={false}/>
+            <LargeSidebarItem
+              key={subs.id}
+              name={subs.name}
+              url={subs.url}
+              icon={subs.img}
+              isActive={false}
+            />
+          ))}
+        </LargeSidebarContainer>
+        <hr />
+        <LargeSidebarContainer title="Subscription">
+          {you.map((item) => (
+            <LargeSidebarItem
+              url={item.url}
+              key={item.id}
+              name={item.name}
+              icon={item.img}
+              isActive={false}
+            />
           ))}
         </LargeSidebarContainer>
       </div>
@@ -167,7 +197,7 @@ const LargeSidebarItem = ({
         } w-full flex items-center gap-3 rounded-lg p-3`
       )}
     >
-      <div className="w-6 h-6 bg-black rounded-full">{icon}</div>
+      <div className="w-6 h-6 rounded-full">{icon}</div>
       <p className="whitespace-nowrap overflow-hidden text-ellipsis">{name}</p>
     </a>
   );
@@ -175,7 +205,7 @@ const LargeSidebarItem = ({
 
 const LargeSidebarContainer = ({ children, title }: LargeSidebarProps) => {
   return (
-    <div>
+    <div className="py-3">
       {title && <h2 className="py-2 px-4 text-lg font-semibold">{title}</h2>}
       <div>{children}</div>
     </div>
