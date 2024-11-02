@@ -95,6 +95,32 @@ export const Sidebar = () => {
       url: "",
     },
   ];
+  const explore = [
+    {
+      id: 1,
+      name: "Trending",
+      img: "",
+      url: "",
+    },
+    {
+      id: 2,
+      name: "Music",
+      img: "",
+      url: "",
+    },
+    {
+      id: 3,
+      name: "Gaming",
+      img: "",
+      url: "",
+    },
+    {
+      id: 4,
+      name: "Sports",
+      img: "",
+      url: "",
+    }
+  ];
 
   return (
     <>
@@ -108,7 +134,7 @@ export const Sidebar = () => {
           />
         ))}
       </div>
-      <div className="lg:sticky absolute top-0 overflow-y-auto flex flex-col w-52 mx-2">
+      <div className="lg:sticky absolute top-0 overflow-y-auto flex flex-col w-56 mx-2">
         <LargeSidebarContainer title="You">
           {sideBarItems.map((item) => (
             <LargeSidebarItem
@@ -140,6 +166,18 @@ export const Sidebar = () => {
               key={item.id}
               name={item.name}
               icon={item.img}
+              isActive={false}
+            />
+          ))}
+        </LargeSidebarContainer>
+        <hr />
+        <LargeSidebarContainer title="Explore">
+          {explore.map((item) => (
+            <LargeSidebarItem
+              url={item.url}
+              key={item.id}
+              name={item.name}
+              icon={item.icon}
               isActive={false}
             />
           ))}
