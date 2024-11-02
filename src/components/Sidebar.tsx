@@ -1,10 +1,10 @@
 import { Home } from "@mui/icons-material";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 import { buttonStyles } from "./Button";
 import SmartDisplayOutlinedIcon from "@mui/icons-material/SmartDisplayOutlined";
 import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined";
+import { ReactNode } from "react";
 
 export const Sidebar = () => {
   const sideBarItems = [
@@ -30,6 +30,72 @@ export const Sidebar = () => {
     },
   ];
 
+  const subscriptions = [
+    {
+      id: 1,
+      name: "Channel 1",
+      img: "",
+      url: "",
+    },
+    {
+      id: 1,
+      name: "Channel 1",
+      img: "",
+      url: "",
+    },
+    {
+      id: 2,
+      name: "Channel 2",
+      img: "",
+      url: "",
+    },
+    {
+      id: 3,
+      name: "Channel 3",
+      img: "",
+      url: "",
+    },
+    {
+      id: 4,
+      name: "Channel 4",
+      img: "",
+      url: "",
+    },
+  ];
+
+  const you = [
+    {
+      id: 1,
+      name: "History",
+      img: "",
+      url: "",
+    },
+    {
+      id: 2,
+      name: "Playlists",
+      img: "",
+      url: "",
+    },
+    {
+      id: 3,
+      name: "Your videos",
+      img: "",
+      url: "",
+    },
+    {
+      id: 4,
+      name: "Watch later",
+      img: "",
+      url: "",
+    },
+    {
+      id: 5,
+      name: "Liked videos",
+      img: "",
+      url: "",
+    },
+  ];
+
   return (
     <>
       <div className="lg:hidden sticky top-0 overflow-y-auto flex flex-col ml-1">
@@ -42,9 +108,11 @@ export const Sidebar = () => {
           />
         ))}
       </div>
-      <div className="lg:sticky absolute top-0 overflow-y-auto flex flex-col gap-2">
-        <LargeSidebarContainer>
-          <LargeSidebarItem />
+      <div className="lg:sticky absolute top-0 overflow-y-auto flex flex-col w-52 mx-2">
+        <LargeSidebarContainer title="Subscription">
+          {subscriptions.map((subs) => (
+            <LargeSidebarItem name={subs.name} icon={subs.img} isActive={false}/>
+          ))}
         </LargeSidebarContainer>
       </div>
     </>
@@ -62,6 +130,10 @@ type LargeSidebarItemProps = {
   name: string;
   url: string;
   isActive?: boolean;
+};
+type LargeSidebarProps = {
+  children: ReactNode;
+  title: string;
 };
 
 const SmallSidebarItem = ({ icon, name, url }: SmallSidebarItemProps) => {
@@ -83,22 +155,29 @@ const LargeSidebarItem = ({
   icon,
   name,
   url,
-  isActive = false,
+  isActive = true,
 }: LargeSidebarItemProps) => {
   return (
     <a
       href={url}
       className={twMerge(
         buttonStyles({ variant: "ghost" }),
-        "w-full flex items-center gap-3 rounded-lg"
+        `${
+          isActive ? "bg-neutral-100 font-semibold" : ""
+        } w-full flex items-center gap-3 rounded-lg p-3`
       )}
     >
-      <div className="w-6 h-6">{icon}</div>
+      <div className="w-6 h-6 bg-black rounded-full">{icon}</div>
       <p className="whitespace-nowrap overflow-hidden text-ellipsis">{name}</p>
     </a>
   );
 };
 
-const LargeSidebarContainer = () => {
-  return <div></div>;
+const LargeSidebarContainer = ({ children, title }: LargeSidebarProps) => {
+  return (
+    <div>
+      {title && <h2 className="py-2 px-4 text-lg font-semibold">{title}</h2>}
+      <div>{children}</div>
+    </div>
+  );
 };
