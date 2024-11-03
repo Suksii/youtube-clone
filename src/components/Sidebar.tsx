@@ -124,7 +124,7 @@ export const Sidebar = () => {
 
   return (
     <>
-      <div className="lg:hidden sticky top-0 overflow-y-auto flex flex-col ml-1">
+      <div className="lg:hidden sticky top-0 overflow-y-auto flex flex-col ml-1 scrollbar-hidden">
         {sideBarItems.map((item) => (
           <SmallSidebarItem
             key={item.name}
@@ -134,7 +134,7 @@ export const Sidebar = () => {
           />
         ))}
       </div>
-      <div className="lg:sticky absolute top-0 overflow-y-auto flex flex-col w-56 mx-2">
+      <div className="lg:sticky absolute top-0 overflow-y-auto flex flex-col w-56 mx-2 scrollbar-hidden">
         <LargeSidebarContainer title="You">
           {sideBarItems.map((item) => (
             <LargeSidebarItem
