@@ -4,9 +4,17 @@
 
 
 *::-webkit-scrollbar {
-    @apply w-2 bg-transparent
+    @apply w-2 bg-transparent;
 }
 
 *::-webkit-scrollbar-thumb {
-    @apply bg-secondary-dark rounded-full
+    @apply bg-secondary-dark rounded-full;
+}
+
+.scrollbar-hidden::-webkit-scrollbar-thumb {
+    @apply bg-transparent;
+}
+
+.scrollbar-hidden:hover::-webkit-scrollbar-thumb {
+    @apply bg-secondary-border;
 }
