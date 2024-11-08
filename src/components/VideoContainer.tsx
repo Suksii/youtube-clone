@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import { FormatView } from "./FormatView";
 
 type VideoProps = {
   id: number;
   title: string;
   channel: string;
   channelImg: string;
-  views: string;
+  views: number;
   postedAt: string;
   thumbnailUrl: string;
   videoUrl: string;
@@ -76,7 +77,7 @@ const VideoContainer = ({
             {channel}
           </a>
           <div className="text-secondary-text text-sm">
-            {views} Views • {postedAt}
+            {FormatView(views)} views • {postedAt}
           </div>
         </div>
       </div>
