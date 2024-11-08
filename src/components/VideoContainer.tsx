@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { FormatView } from "./FormatView";
+import { FormatView } from "../utils/FormatView";
+import { FormatDuration } from "../utils/FormatDuration";
 
 type VideoProps = {
   id: number;
@@ -10,7 +11,7 @@ type VideoProps = {
   postedAt: string;
   thumbnailUrl: string;
   videoUrl: string;
-  duration: string;
+  duration: number;
 };
 
 const VideoContainer = ({
@@ -50,7 +51,7 @@ const VideoContainer = ({
           } transition-[border-radius] duration-200 w-full h-full object-cover`}
         />
         <div className="absolute bottom-1 right-1 bg-secondary-dark text-secondary text-sm p-0.5">
-          {duration}
+          {FormatDuration(duration)}
         </div>
         <video
           ref={videoRef}
