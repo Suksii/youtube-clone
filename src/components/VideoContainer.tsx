@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FormatView } from "../utils/FormatView";
 import { FormatDuration } from "../utils/FormatDuration";
+import { format } from "timeago.js";
 
 type VideoProps = {
   id: number;
@@ -78,7 +79,7 @@ const VideoContainer = ({
             {channel}
           </a>
           <div className="text-secondary-text text-sm">
-            {FormatView(views)} views • {postedAt}
+            {FormatView(views)} views • {format(postedAt)}
           </div>
         </div>
       </div>
