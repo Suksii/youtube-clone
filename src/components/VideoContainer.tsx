@@ -9,7 +9,7 @@ type VideoProps = {
   channel: string;
   channelImg: string;
   views: number;
-  postedAt: string;
+  postedAt: Date;
   thumbnailUrl: string;
   videoUrl: string;
   duration: number;
