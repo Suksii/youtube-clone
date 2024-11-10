@@ -6,5 +6,5 @@ This is a YouTube clone project built in React using Typescript.
 # Technical Details
 - **React.js:**
   - `useState, useEffect, useRef`
-  - `react-icons`
+  - `materialUI icons`
   - `tailwindCSS`
