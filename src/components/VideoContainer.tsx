@@ -51,7 +51,7 @@ const VideoContainer = ({
             isVideoPlaying ? "rounded-0" : "rounded-xl"
           } transition-[border-radius] duration-200 w-full h-full object-cover`}
         />
-        <div className="absolute bottom-1 right-1 bg-secondary-dark text-secondary text-sm p-0.5">
+        <div className="absolute bottom-1 right-1 bg-secondary-dark text-secondary text-sm py-0.5 px-1 rounded-md">
           {FormatDuration(duration)}
         </div>
         <video
