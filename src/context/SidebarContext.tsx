@@ -1,5 +1,25 @@
-import { createContext } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
-const SidebarContext = createContext(null);
+type SidebarContextProps = {
+  children: ReactNode;
+};
 
-export const SidebarProvider = ({ children }) => {};
+type SidebarContextType = {
+  isLargeOpen: boolean;
+  isSmallOpen: boolean;
+};
+
+const SidebarContext = createContext<SidebarContextType | null>(null);
+
+export const SidebarProvider = ({ children }: SidebarContextProps) => {
+  const [isSmallOpen, setIsSmallOpen] = useState(false);
+  const [isLargeOpen, setIsLargeOpen] = useState(false);
+
+  return (
+    <SidebarContext.Provider value={{ isLargeOpen, isSmallOpen }}>
+      {children}
+    </SidebarContext.Provider>
+  );
+};
+
+export const useSidebar = useContext(SidebarContext);
