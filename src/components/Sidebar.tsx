@@ -6,6 +6,7 @@ import SmartDisplayOutlinedIcon from "@mui/icons-material/SmartDisplayOutlined";
 import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined";
 import { ReactNode } from "react";
 import { useSidebar } from "../context/SidebarContext";
+import LogoSection from "./LogoSection";
 
 export const Sidebar = () => {
   const { isLargeOpen, isSmallOpen } = useSidebar();
@@ -140,6 +141,9 @@ export const Sidebar = () => {
           isLargeOpen ? "lg:flex" : "lg:hidden"
         } ${isSmallOpen ? "flex z-50 bg-white max-h-screen" : "hidden"}`}
       >
+        <div className="lg:hidden px-2 pt-2 pb-4">
+          <LogoSection />
+        </div>
         <LargeSidebarContainer title="">
           {sideBarItems
             .map((item) => (

@@ -3,10 +3,10 @@ import Button from "./Button";
 import { useSidebar } from "../context/SidebarContext";
 
 type LogoSectionProps = {
-  isFullWidth: boolean;
+  isFullWidth?: boolean;
 };
 
-const LogoSection = ({ isFullWidth }: LogoSectionProps) => {
+const LogoSection = ({ isFullWidth = false }: LogoSectionProps) => {
   const { toggleSidebar } = useSidebar();
 
   return (
