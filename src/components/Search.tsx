@@ -37,17 +37,15 @@ const Search: React.FC<SearchProps> = ({ isFullWidth, setIsFullWidth }) => {
             type="search"
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            className="w-full border border-secondary-border py-1.5 px-4 rounded-l-full focus:border focus:border-blue-600 focus:shadow-[inset_0_4px_4px_-4px_rgba(0,0,0,0.5)] outline-none"
+            className="w-full border border-secondary-border py-2 px-4 rounded-l-full focus:border focus:border-blue-600 focus:shadow-[inset_0_4px_4px_-4px_rgba(0,0,0,0.5)] outline-none"
             placeholder="Search"
           />
           {value && (
             <Button
-              className={twMerge(
-                buttonStyles({ variant: "ghost", size: "icon" }),
-                "absolute right-0 top-1/2 -translate-y-1/2 text-secondary-text"
-              )}
-              variant="ghost"
+              type="button"
+              className="absolute right-0 mx-[1px] top-1/2 -translate-y-1/2 text-secondary-text"
               size="icon"
+              variant="ghost"
               onClick={handleClear}
             >
               <CloseOutlinedIcon
