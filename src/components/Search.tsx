@@ -1,7 +1,10 @@
 import SearchIcon from "@mui/icons-material/Search";
 import MicIcon from "@mui/icons-material/Mic";
 import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
-import Button from "./Button";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import Button, { buttonStyles } from "./Button";
+import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 type SearchProps = {
   isFullWidth: boolean;
@@ -9,9 +12,14 @@ type SearchProps = {
 };
 
 const Search: React.FC<SearchProps> = ({ isFullWidth, setIsFullWidth }) => {
+  const [value, setValue] = useState("");
+
+  const handleClear = () => {
+    setValue("");
+  };
+
   return (
-    <form className="flex flex-grow justify-center items-center gap-4"
-    >
+    <form className="flex flex-grow justify-center items-center gap-4">
       {isFullWidth && (
         <Button
           type="button"
@@ -24,11 +32,33 @@ const Search: React.FC<SearchProps> = ({ isFullWidth, setIsFullWidth }) => {
         </Button>
       )}
       <div className="flex flex-grow max-w-[600px]">
-        <input
-          type="search"
-          className="w-full border border-secondary-border py-1 px-4 rounded-l-full focus:border focus:border-blue-600 outline-none"
-          placeholder="Search"
-        />
+        <div className="relative flex flex-grow ">
+          <input
+            type="search"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            className="w-full border border-secondary-border py-1.5 px-4 rounded-l-full focus:border focus:border-blue-600 focus:shadow-[inset_0_4px_4px_-4px_rgba(0,0,0,0.5)] outline-none"
+            placeholder="Search"
+          />
+          {value && (
+            <Button
+              className={twMerge(
+                buttonStyles({ variant: "ghost", size: "icon" }),
+                "absolute right-0 top-1/2 -translate-y-1/2 text-secondary-text"
+              )}
+              variant="ghost"
+              size="icon"
+              onClick={handleClear}
+            >
+              <CloseOutlinedIcon
+                sx={{
+                  fontSize: 40,
+                  padding: 0.5,
+                }}
+              />
+            </Button>
+          )}
+        </div>
         <Button className="py-1 px-4 rounded-r-full border border-l-0 border-secondary-border">
           <SearchIcon />
         </Button>

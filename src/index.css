@@ -18,3 +18,8 @@
 .scrollbar-hidden:hover::-webkit-scrollbar-thumb {
     @apply bg-secondary-border;
 }
+
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}

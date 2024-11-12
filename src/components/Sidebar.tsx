@@ -38,12 +38,6 @@ export const Sidebar = () => {
       url: "",
     },
     {
-      id: 1,
-      name: "Channel 1",
-      img: "",
-      url: "",
-    },
-    {
       id: 2,
       name: "Channel 2",
       img: "",
@@ -99,27 +93,27 @@ export const Sidebar = () => {
     {
       id: 1,
       name: "Trending",
-      img: "",
+      icon: "",
       url: "",
     },
     {
       id: 2,
       name: "Music",
-      img: "",
+      icon: "",
       url: "",
     },
     {
       id: 3,
       name: "Gaming",
-      img: "",
+      icon: "",
       url: "",
     },
     {
       id: 4,
       name: "Sports",
-      img: "",
+      icon: "",
       url: "",
-    }
+    },
   ];
 
   return (
@@ -174,8 +168,8 @@ export const Sidebar = () => {
         <LargeSidebarContainer title="Explore">
           {explore.map((item) => (
             <LargeSidebarItem
-              url={item.url}
               key={item.id}
+              url={item.url}
               name={item.name}
               icon={item.icon}
               isActive={false}

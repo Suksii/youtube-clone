@@ -1,0 +1,3 @@
+const FormatPostedDate = () => {
+  return {};
+};
