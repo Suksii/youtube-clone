@@ -5,8 +5,11 @@ import { buttonStyles } from "./Button";
 import SmartDisplayOutlinedIcon from "@mui/icons-material/SmartDisplayOutlined";
 import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined";
 import { ReactNode } from "react";
+import { useSidebar } from "../context/SidebarContext";
 
 export const Sidebar = () => {
+  const { isLargeOpen, isSmallOpen } = useSidebar();
+
   const sideBarItems = [
     {
       icon: <Home />,
@@ -118,7 +121,11 @@ export const Sidebar = () => {
 
   return (
     <>
-      <div className="lg:hidden sticky top-0 overflow-y-auto flex flex-col ml-1 scrollbar-hidden">
+      <div
+        className={`sticky top-0 overflow-y-auto flex flex-col ml-1 scrollbar-hidden ${
+          isLargeOpen ? "lg:hidden" : "lg:flex"
+        }`}
+      >
         {sideBarItems.map((item) => (
           <SmallSidebarItem
             key={item.name}
@@ -128,38 +135,44 @@ export const Sidebar = () => {
           />
         ))}
       </div>
-      <div className="lg:sticky absolute top-0 overflow-y-auto flex flex-col w-56 mx-2 scrollbar-hidden">
-        <LargeSidebarContainer title="You">
-          {sideBarItems.map((item) => (
-            <LargeSidebarItem
-              key={item.name}
-              name={item.name}
-              url={item.url}
-              icon={item.icon}
-              isActive={false}
-            />
-          ))}
+      <div
+        className={`lg:sticky absolute top-0 overflow-y-auto flex-col w-56 mx-2 scrollbar-hidden ${
+          isLargeOpen ? "lg:flex" : "lg:hidden"
+        } ${isSmallOpen ? "flex z-50 bg-white max-h-screen" : "hidden"}`}
+      >
+        <LargeSidebarContainer title="">
+          {sideBarItems
+            .map((item) => (
+              <LargeSidebarItem
+                key={item.name}
+                name={item.name}
+                url={item.url}
+                icon={item.icon}
+                isActive={false}
+              />
+            ))
+            .slice(0, 3)}
         </LargeSidebarContainer>
         <hr />
         <LargeSidebarContainer title="You">
-          {subscriptions.map((subs) => (
-            <LargeSidebarItem
-              key={subs.id}
-              name={subs.name}
-              url={subs.url}
-              icon={subs.img}
-              isActive={false}
-            />
-          ))}
-        </LargeSidebarContainer>
-        <hr />
-        <LargeSidebarContainer title="Subscription">
           {you.map((item) => (
             <LargeSidebarItem
               url={item.url}
               key={item.id}
               name={item.name}
               icon={item.img}
+              isActive={false}
+            />
+          ))}
+        </LargeSidebarContainer>
+        <hr />
+        <LargeSidebarContainer title="Subscriptions">
+          {subscriptions.map((subs) => (
+            <LargeSidebarItem
+              key={subs.id}
+              name={subs.name}
+              url={subs.url}
+              icon={subs.img}
               isActive={false}
             />
           ))}
