@@ -2,7 +2,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Button from "./Button";
 import { useSidebar } from "../context/SidebarContext";
 
-const LogoSection = ({ isFullWidth }) => {
+type LogoSectionProps = {
+  isFullWidth: boolean;
+};
+
+const LogoSection = ({ isFullWidth }: LogoSectionProps) => {
   const { toggleSidebar } = useSidebar();
 
   return (
