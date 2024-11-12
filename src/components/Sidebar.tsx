@@ -9,7 +9,7 @@ import { useSidebar } from "../context/SidebarContext";
 import LogoSection from "./LogoSection";
 
 export const Sidebar = () => {
-  const { isLargeOpen, isSmallOpen } = useSidebar();
+  const { isLargeOpen, isSmallOpen, closeSidebar } = useSidebar();
 
   const sideBarItems = [
     {
@@ -136,12 +136,18 @@ export const Sidebar = () => {
           />
         ))}
       </div>
+      {isSmallOpen && (
+        <div
+          onClick={closeSidebar}
+          className="lg:hidden fixed inset-0 z-50 bg-secondary-dark bg-opacity-50"
+        ></div>
+      )}
       <div
-        className={`lg:sticky absolute top-0 overflow-y-auto flex-col w-56 mx-2 scrollbar-hidden ${
+        className={`lg:sticky absolute top-0 overflow-y-auto flex-col w-56 scrollbar-hidden ${
           isLargeOpen ? "lg:flex" : "lg:hidden"
         } ${isSmallOpen ? "flex z-50 bg-white max-h-screen" : "hidden"}`}
       >
-        <div className="lg:hidden px-2 pt-2 pb-4">
+        <div className="lg:hidden px-4 py-2 sticky top-0 bg-white">
           <LogoSection />
         </div>
         <LargeSidebarContainer title="">
