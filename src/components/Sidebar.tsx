@@ -143,7 +143,7 @@ export const Sidebar = () => {
         ></div>
       )}
       <div
-        className={`lg:sticky absolute top-0 overflow-y-auto flex-col w-56 scrollbar-hidden ${
+        className={`lg:sticky absolute top-0 overflow-y-auto flex-col w-56 scrollbar-hidden duration-300 ${
           isLargeOpen ? "lg:flex" : "lg:hidden"
         } ${isSmallOpen ? "flex z-50 bg-white max-h-screen" : "hidden"}`}
       >

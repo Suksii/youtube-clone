@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 type SidebarContextProps = {
   children: ReactNode;
@@ -16,13 +22,23 @@ const SidebarContext = createContext<SidebarContextType | null>(null);
 export const SidebarProvider = ({ children }: SidebarContextProps) => {
   const [isSmallOpen, setIsSmallOpen] = useState(false);
   const [isLargeOpen, setIsLargeOpen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
-  const isScreenSmall = () => {
-    return window.innerWidth < 1024;
-  };
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 1024);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => {
+      window.removeEventListener("resize", checkScreenSize);
+    };
+  }, []);
 
   const toggleSidebar = () => {
-    if (isScreenSmall()) {
+    if (isSmallScreen) {
       setIsSmallOpen((prev) => !prev);
     } else {
       setIsLargeOpen((prev) => !prev);
@@ -30,7 +46,7 @@ export const SidebarProvider = ({ children }: SidebarContextProps) => {
   };
 
   const closeSidebar = () => {
-    if (isScreenSmall()) {
+    if (isSmallScreen) {
       setIsSmallOpen(false);
     } else {
       setIsLargeOpen(false);
