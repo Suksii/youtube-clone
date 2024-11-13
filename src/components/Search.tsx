@@ -47,7 +47,7 @@ const Search: React.FC<SearchProps> = ({ isFullWidth, setIsFullWidth }) => {
               variant="ghost"
               onClick={handleClear}
             >
-              <CloseOutlinedIcon/>
+              <CloseOutlinedIcon />
             </Button>
           )}
         </div>

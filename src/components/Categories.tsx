@@ -42,7 +42,7 @@ const Categories = () => {
   }, [categoryData, translate]);
 
   return (
-    <div className="relative overflow-x-hidden pb-8" ref={containerRef}>
+    <div className="relative overflow-x-hidden mb-4" ref={containerRef}>
       <div
         className="flex whitespace-nowrap gap-2 w-fit transition-transform"
         style={{ transform: `translateX(-${translate}px)` }}
@@ -50,7 +50,7 @@ const Categories = () => {
         {categoryData.map((category) => {
           return (
             <Button
-              className="px-3 py-1 rounded-lg whitespace-nowrap"
+              className="p-2 rounded-lg whitespace-nowrap"
               variant={selectedCategory === category ? "dark" : "default"}
               key={category}
               onClick={() => setSelectedCategory(category)}
