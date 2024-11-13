@@ -1,9 +1,19 @@
 import { Home } from "@mui/icons-material";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { twMerge } from "tailwind-merge";
 import { buttonStyles } from "./Button";
-import SmartDisplayOutlinedIcon from "@mui/icons-material/SmartDisplayOutlined";
-import SubscriptionsOutlinedIcon from "@mui/icons-material/SubscriptionsOutlined";
+import {
+  SmartDisplayOutlined,
+  SubscriptionsOutlined,
+  AccountCircleOutlined,
+  PlaylistPlayOutlined,
+  RestoreOutlined,
+  AccessTimeOutlined,
+  ThumbUpOutlined,
+  WhatshotOutlined,
+  QueueMusicOutlined,
+  SportsEsportsOutlined,
+  EmojiEventsOutlined,
+} from "@mui/icons-material";
 import { ReactNode } from "react";
 import { useSidebar } from "../context/SidebarContext";
 import LogoSection from "./LogoSection";
@@ -19,17 +29,17 @@ export const Sidebar = () => {
       url: "/",
     },
     {
-      icon: <SmartDisplayOutlinedIcon />,
+      icon: <SmartDisplayOutlined />,
       name: "Shorts",
       url: "/",
     },
     {
-      icon: <SubscriptionsOutlinedIcon />,
+      icon: <SubscriptionsOutlined />,
       name: "Subscriptions",
       url: "/",
     },
     {
-      icon: <AccountCircleOutlinedIcon />,
+      icon: <AccountCircleOutlined />,
       name: "You",
       url: "/",
     },
@@ -66,31 +76,31 @@ export const Sidebar = () => {
     {
       id: 1,
       name: "History",
-      img: "",
+      img: <RestoreOutlined />,
       url: "",
     },
     {
       id: 2,
       name: "Playlists",
-      img: "",
+      img: <PlaylistPlayOutlined />,
       url: "",
     },
     {
       id: 3,
       name: "Your videos",
-      img: "",
+      img: <SmartDisplayOutlined />,
       url: "",
     },
     {
       id: 4,
       name: "Watch later",
-      img: "",
+      img: <AccessTimeOutlined />,
       url: "",
     },
     {
       id: 5,
       name: "Liked videos",
-      img: "",
+      img: <ThumbUpOutlined />,
       url: "",
     },
   ];
@@ -98,25 +108,25 @@ export const Sidebar = () => {
     {
       id: 1,
       name: "Trending",
-      icon: "",
+      icon: <WhatshotOutlined />,
       url: "",
     },
     {
       id: 2,
       name: "Music",
-      icon: "",
+      icon: <QueueMusicOutlined />,
       url: "",
     },
     {
       id: 3,
       name: "Gaming",
-      icon: "",
+      icon: <SportsEsportsOutlined />,
       url: "",
     },
     {
       id: 4,
       name: "Sports",
-      icon: "",
+      icon: <EmojiEventsOutlined />,
       url: "",
     },
   ];
