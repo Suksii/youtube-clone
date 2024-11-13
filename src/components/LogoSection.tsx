@@ -12,13 +12,15 @@ const LogoSection = ({ isFullWidth = false }: LogoSectionProps) => {
   return (
     <div
       className={
-        isFullWidth ? "hidden" : "flex flex-shrink-0 items-center gap-1 md:gap-2"
+        isFullWidth
+          ? "hidden"
+          : "flex flex-shrink-0 items-center gap-1 md:gap-2"
       }
     >
       <Button size="icon" variant="ghost" onClick={toggleSidebar}>
         <Menu />
       </Button>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2" title="YT Clone">
         <div className="fancy bg-black text-white p-1">
           <PlayArrow />
         </div>

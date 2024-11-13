@@ -24,18 +24,38 @@ const Header = () => {
         <Button
           size="icon"
           variant="ghost"
-          className="md:hidden"
+          className="md:hidden relative group"
+          customTitle="Search"
+          titlePosition="center"
           onClick={() => setIsFullWidth(true)}
         >
           <SearchIcon />
         </Button>
-        <Button size="icon" variant="ghost" className="md:hidden">
+        <Button
+          size="icon"
+          variant="ghost"
+          className="md:hidden relative group"
+          customTitle="Search with your voice"
+          titlePosition="center"
+        >
           <MicIcon />
         </Button>
-        <Button size="icon" variant="ghost">
+        <Button
+          size="icon"
+          variant="ghost"
+          className="relative group"
+          customTitle="Create"
+          titlePosition="center"
+        >
           <VideoCallOutlinedIcon />
         </Button>
-        <Button size="icon" variant="ghost">
+        <Button
+          size="icon"
+          variant="ghost"
+          className="relative group"
+          customTitle="Notifications"
+          titlePosition="center"
+        >
           <NotificationsNoneIcon />
         </Button>
         <p className="py-1 px-3 bg-blue-500 rounded-full text-blue-50">D</p>

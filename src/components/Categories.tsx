@@ -51,6 +51,7 @@ const Categories = () => {
           return (
             <Button
               className="p-2 rounded-lg whitespace-nowrap"
+              title={category}
               variant={selectedCategory === category ? "dark" : "default"}
               key={category}
               onClick={() => setSelectedCategory(category)}

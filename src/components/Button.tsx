@@ -1,6 +1,7 @@
 import { cva, VariantProps } from "class-variance-authority";
 import { ComponentProps, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
+import Title from "../utils/Title";
 
 export const buttonStyles = cva(["transition-colors"], {
   variants: {
@@ -29,13 +30,19 @@ export const buttonStyles = cva(["transition-colors"], {
 });
 
 type ButtonProps = VariantProps<typeof buttonStyles> &
-  ComponentProps<"button"> & { children?: ReactNode };
+  ComponentProps<"button"> & {
+    children?: ReactNode;
+    customTitle?: string;
+    titlePosition?: "left" | "right" | "center";
+  };
 
 const Button = ({
   variant,
   size,
   children,
   className,
+  customTitle,
+  titlePosition = "center",
   ...props
 }: ButtonProps) => {
   return (
@@ -44,6 +51,9 @@ const Button = ({
       className={twMerge(buttonStyles({ variant, size }), className)}
     >
       {children}
+      {customTitle && (
+        <Title title={customTitle} titlePosition={titlePosition} />
+      )}
     </button>
   );
 };
