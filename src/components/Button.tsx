@@ -33,7 +33,7 @@ type ButtonProps = VariantProps<typeof buttonStyles> &
   ComponentProps<"button"> & {
     children?: ReactNode;
     customTitle?: string;
-    titlePosition?: "left" | "right" | "center";
+    titlePosition?: string;
   };
 
 const Button = ({
@@ -42,7 +42,7 @@ const Button = ({
   children,
   className,
   customTitle,
-  titlePosition = "center",
+  titlePosition = "left-1/2 -translate-x-1/2 top-full",
   ...props
 }: ButtonProps) => {
   return (

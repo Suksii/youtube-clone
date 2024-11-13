@@ -26,7 +26,6 @@ const Search: React.FC<SearchProps> = ({ isFullWidth, setIsFullWidth }) => {
           size="icon"
           className="flex-shrink-0 relative group"
           customTitle="Back"
-          titlePosition="center"
           onClick={() => setIsFullWidth(false)}
         >
           <ArrowBackOutlinedIcon />
@@ -65,7 +64,7 @@ const Search: React.FC<SearchProps> = ({ isFullWidth, setIsFullWidth }) => {
         type="button"
         className="relative group"
         customTitle="Search with your voice"
-        titlePosition="right"
+        titlePosition="right-0 lg:right-1/2 lg:translate-x-1/2 top-full"
       >
         <MicIcon />
       </Button>

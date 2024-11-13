@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    box-sizing: border-box;
+}
 
 *::-webkit-scrollbar {
     @apply w-2 bg-transparent;

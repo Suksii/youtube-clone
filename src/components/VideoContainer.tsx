@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { FormatView } from "../utils/FormatView";
 import { FormatDuration } from "../utils/FormatDuration";
 import { format } from "timeago.js";
+import Title from "../utils/Title";
 
 type VideoProps = {
   id: number;
@@ -68,17 +69,28 @@ const VideoContainer = ({
         <a href={`/`} className="flex-shrink-0">
           <img
             src={channelImg}
+            title={channel}
             className="w-12 h-12 rounded-full object-cover bg-black"
           />
         </a>
         <div className="flex flex-col gap-1">
-          <a href={``} className="font-bold">
+          <a href={``} className="font-bold" title={title}>
             {title}
           </a>
-          <a href={``} className="text-secondary-text text-sm">
+          <a
+            href={``}
+            className="w-fit text-secondary-text text-sm relative group"
+          >
             {channel}
+            <Title
+              title={channel}
+              titlePosition="bottom-full left-1/2 -translate-x-1/2 mb-4"
+            />
           </a>
-          <div className="text-secondary-text text-sm">
+          <div
+            className="text-secondary-text text-sm"
+            title={`${FormatView(views)} views • ${format(postedAt)}`}
+          >
             {FormatView(views)} views • {format(postedAt)}
           </div>
         </div>

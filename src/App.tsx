@@ -71,10 +71,10 @@ function App() {
       <div className="grid grid-cols-[auto,1fr] flex-grow overflow-auto">
         <Sidebar />
         <div className="overflow-hidden px-6 py-4">
-          <div className="sticky top-0 z-20">
+          <div className="sticky top-0 z-40">
             <Categories />
           </div>
-          <div className="gap-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
+          <div className="gap-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] z-10">
             {videoData.map((video) => (
               <VideoContainer key={video.id} {...video} />
             ))}

@@ -26,7 +26,6 @@ const Header = () => {
           variant="ghost"
           className="md:hidden relative group"
           customTitle="Search"
-          titlePosition="center"
           onClick={() => setIsFullWidth(true)}
         >
           <SearchIcon />
@@ -36,7 +35,6 @@ const Header = () => {
           variant="ghost"
           className="md:hidden relative group"
           customTitle="Search with your voice"
-          titlePosition="center"
         >
           <MicIcon />
         </Button>
@@ -45,7 +43,6 @@ const Header = () => {
           variant="ghost"
           className="relative group"
           customTitle="Create"
-          titlePosition="center"
         >
           <VideoCallOutlinedIcon />
         </Button>
@@ -54,7 +51,6 @@ const Header = () => {
           variant="ghost"
           className="relative group"
           customTitle="Notifications"
-          titlePosition="center"
         >
           <NotificationsNoneIcon />
         </Button>

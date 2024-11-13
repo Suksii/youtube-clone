@@ -42,7 +42,7 @@ const Categories = () => {
   }, [categoryData, translate]);
 
   return (
-    <div className="relative overflow-x-hidden mb-4" ref={containerRef}>
+    <div className="relative overflow-hidden mb-4" ref={containerRef}>
       <div
         className="flex whitespace-nowrap gap-2 w-fit transition-transform"
         style={{ transform: `translateX(-${translate}px)` }}
@@ -64,8 +64,10 @@ const Categories = () => {
       {isLeftArrowVisible && (
         <div className="w-24 h-full absolute left-0 top-1/2 -translate-y-1/2 bg-gradient-to-r from-white from-50% to-transparent">
           <Button
-            className="aspect-square h-full w-auto p-1.5"
+            className="aspect-square h-full w-auto p-1.5 relative group"
             variant="ghost"
+            customTitle="Previous"
+            titlePosition="left-1/2 -translate-x-1/2"
             size="icon"
             type="button"
             onClick={() =>
@@ -83,8 +85,10 @@ const Categories = () => {
       {isRightArrowVisible && (
         <div className="w-24 h-full flex justify-end absolute right-0 top-1/2 -translate-y-1/2 bg-gradient-to-l from-white from-50% to-transparent">
           <Button
-            className="aspect-square h-full w-auto p-1.5"
+            className="aspect-square h-full w-auto p-1.5 relative group"
             variant="ghost"
+            customTitle="Next"
+            titlePosition="left-1/2 -translate-x-1/2 z-50"
             size="icon"
             type="button"
             onClick={() => {
