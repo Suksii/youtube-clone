@@ -141,6 +141,7 @@ export const Sidebar = () => {
         {sideBarItems.map((item) => (
           <SmallSidebarItem
             key={item.name}
+            customTitle={item.name}
             icon={item.icon}
             name={item.name}
             url={item.url}
@@ -170,6 +171,7 @@ export const Sidebar = () => {
             .map((item) => (
               <LargeSidebarItem
                 key={item.name}
+                customTitle={item.name}
                 name={item.name}
                 url={item.url}
                 icon={item.icon}
@@ -183,6 +185,7 @@ export const Sidebar = () => {
           {you.map((item) => (
             <LargeSidebarItem
               url={item.url}
+              customTitle={item.name}
               key={item.id}
               name={item.name}
               icon={item.img}
@@ -195,6 +198,7 @@ export const Sidebar = () => {
           {subscriptions.map((subs) => (
             <LargeSidebarItem
               key={subs.id}
+              customTitle={subs.name}
               name={subs.name}
               url={subs.url}
               icon={subs.img}
@@ -208,6 +212,7 @@ export const Sidebar = () => {
             <LargeSidebarItem
               key={item.id}
               url={item.url}
+              customTitle={item.name}
               name={item.name}
               icon={item.icon}
               isActive={false}
@@ -223,11 +228,13 @@ type SmallSidebarItemProps = {
   icon: ReactNode;
   name: string;
   url: string;
+  customTitle: string;
 };
 
 type LargeSidebarItemProps = {
   icon: ReactNode;
   name: string;
+  customTitle: string;
   url: string;
   isActive?: boolean;
 };
@@ -236,10 +243,16 @@ type LargeSidebarProps = {
   title: string;
 };
 
-const SmallSidebarItem = ({ icon, name, url }: SmallSidebarItemProps) => {
+const SmallSidebarItem = ({
+  icon,
+  name,
+  url,
+  customTitle,
+}: SmallSidebarItemProps) => {
   return (
     <a
       href={url}
+      title={customTitle}
       className={twMerge(
         buttonStyles({ variant: "ghost" }),
         "flex flex-col items-center justify-center px-1 py-4 rounded-lg w-16 h-[74px]"
@@ -255,11 +268,13 @@ const LargeSidebarItem = ({
   icon,
   name,
   url,
+  customTitle,
   isActive = true,
 }: LargeSidebarItemProps) => {
   return (
     <a
       href={url}
+      title={customTitle}
       className={twMerge(
         buttonStyles({ variant: "ghost" }),
         `${
