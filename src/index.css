@@ -23,3 +23,7 @@ input[type="search"]::-webkit-search-cancel-button {
     -webkit-appearance: none;
     appearance: none;
 }
+
+.fancy{
+    border-radius: 44% 56% 64% 36% / 68% 38% 62% 32%;
+}
