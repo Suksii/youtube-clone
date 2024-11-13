@@ -143,9 +143,13 @@ export const Sidebar = () => {
         ></div>
       )}
       <div
-        className={`lg:sticky absolute top-0 overflow-y-auto flex-col w-56 scrollbar-hidden duration-300 ${
+        className={`lg:sticky absolute top-0 bg-white overflow-y-auto flex-col w-56 scrollbar-hidden transform transition-transform duration-300 z-50 ${
           isLargeOpen ? "lg:flex" : "lg:hidden"
-        } ${isSmallOpen ? "flex z-50 bg-white max-h-screen" : "hidden"}`}
+        } ${
+          isSmallOpen
+            ? "flex max-h-screen"
+            : "-translate-x-full"
+        }`}
       >
         <div className="lg:hidden px-4 py-2 sticky top-0 bg-white">
           <LogoSection />
