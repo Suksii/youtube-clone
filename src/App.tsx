@@ -23,7 +23,7 @@ function App() {
       channel: "agadmator's Chess Channel",
       channelImg: "",
       views: 112364,
-      postedAt: new Date(2023, 8, 15, 10, 45),
+      postedAt: new Date("9/10/2023"),
       thumbnailUrl: "https://i3.ytimg.com/vi/JYm_RvV8MJM/maxresdefault.jpg",
       videoUrl: "https://www.youtube.com/watch?v=JYm_RvV8MJM&t=11s",
       duration: 334,

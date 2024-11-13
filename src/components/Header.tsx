@@ -5,7 +5,6 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import Search from "./Search";
 import Button from "./Button";
 import { useState } from "react";
-import { useSidebar } from "../context/SidebarContext";
 import LogoSection from "./LogoSection";
 
 const Header = () => {
@@ -30,7 +29,7 @@ const Header = () => {
         >
           <SearchIcon />
         </Button>
-        <Button size="icon" variant="ghost">
+        <Button size="icon" variant="ghost" className="md:hidden">
           <MicIcon />
         </Button>
         <Button size="icon" variant="ghost">

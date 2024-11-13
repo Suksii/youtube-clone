@@ -13,6 +13,7 @@ type SidebarContextProps = {
 type SidebarContextType = {
   isLargeOpen: boolean;
   isSmallOpen: boolean;
+  isSmallScreen: boolean;
   toggleSidebar: () => void;
   closeSidebar: () => void;
 };
@@ -27,6 +28,7 @@ export const SidebarProvider = ({ children }: SidebarContextProps) => {
   useEffect(() => {
     const checkScreenSize = () => {
       setIsSmallScreen(window.innerWidth < 1024);
+      if (!isSmallScreen) setIsSmallOpen(false);
     };
 
     checkScreenSize();
@@ -55,7 +57,13 @@ export const SidebarProvider = ({ children }: SidebarContextProps) => {
 
   return (
     <SidebarContext.Provider
-      value={{ isLargeOpen, isSmallOpen, toggleSidebar, closeSidebar }}
+      value={{
+        isLargeOpen,
+        isSmallOpen,
+        toggleSidebar,
+        closeSidebar,
+        isSmallScreen,
+      }}
     >
       {children}
     </SidebarContext.Provider>

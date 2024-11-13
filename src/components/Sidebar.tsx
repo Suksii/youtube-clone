@@ -9,7 +9,8 @@ import { useSidebar } from "../context/SidebarContext";
 import LogoSection from "./LogoSection";
 
 export const Sidebar = () => {
-  const { isLargeOpen, isSmallOpen, closeSidebar } = useSidebar();
+  const { isLargeOpen, isSmallOpen, closeSidebar, isSmallScreen } =
+    useSidebar();
 
   const sideBarItems = [
     {
@@ -123,7 +124,7 @@ export const Sidebar = () => {
   return (
     <>
       <div
-        className={`sticky top-0 overflow-y-auto flex flex-col ml-1 scrollbar-hidden ${
+        className={`sticky top-0 overflow-y-auto hidden sm:flex flex-col ml-1 scrollbar-hidden ${
           isLargeOpen ? "lg:hidden" : "lg:flex"
         }`}
       >
@@ -148,7 +149,7 @@ export const Sidebar = () => {
         } ${
           isSmallOpen
             ? "flex max-h-screen"
-            : "-translate-x-full"
+            : `${isSmallScreen ? "-translate-x-full" : "hidden"}`
         }`}
       >
         <div className="lg:hidden px-4 py-2 sticky top-0 bg-white">
@@ -231,11 +232,11 @@ const SmallSidebarItem = ({ icon, name, url }: SmallSidebarItemProps) => {
       href={url}
       className={twMerge(
         buttonStyles({ variant: "ghost" }),
-        "flex flex-col items-center justify-center px-1 py-4 rounded-lg"
+        "flex flex-col items-center justify-center px-1 py-4 rounded-lg w-16 h-[74px]"
       )}
     >
       <div className="w-6 h-6">{icon}</div>
-      <p className="text-sm">{name}</p>
+      <p className="text-[10px]">{name}</p>
     </a>
   );
 };
