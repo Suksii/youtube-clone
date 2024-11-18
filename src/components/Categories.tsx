@@ -88,7 +88,7 @@ const Categories = () => {
             className="aspect-square h-full w-auto p-1.5 relative group"
             variant="ghost"
             customTitle="Next"
-            titlePosition="left-1/2 -translate-x-1/2 z-50"
+            titlePosition="left-1/2 -translate-x-1/2"
             size="icon"
             type="button"
             onClick={() => {

@@ -3,18 +3,7 @@ import { FormatView } from "../utils/FormatView";
 import { FormatDuration } from "../utils/FormatDuration";
 import { format } from "timeago.js";
 import Title from "../utils/Title";
-
-type VideoProps = {
-  id: number;
-  title: string;
-  channel: string;
-  channelImg: string;
-  views: number;
-  postedAt: Date;
-  thumbnailUrl: string;
-  videoUrl: string;
-  duration: number;
-};
+import { VideoProps } from "../types/types";
 
 const VideoContainer = ({
   id,

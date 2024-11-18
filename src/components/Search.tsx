@@ -4,11 +4,7 @@ import ArrowBackOutlinedIcon from "@mui/icons-material/ArrowBackOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import Button from "./Button";
 import { useState } from "react";
-
-type SearchProps = {
-  isFullWidth: boolean;
-  setIsFullWidth: (value: boolean) => void;
-};
+import { SearchProps } from "../types/types";
 
 const Search: React.FC<SearchProps> = ({ isFullWidth, setIsFullWidth }) => {
   const [value, setValue] = useState("");

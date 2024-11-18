@@ -1,22 +1,5 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-
-type SidebarContextProps = {
-  children: ReactNode;
-};
-
-type SidebarContextType = {
-  isLargeOpen: boolean;
-  isSmallOpen: boolean;
-  isSmallScreen: boolean;
-  toggleSidebar: () => void;
-  closeSidebar: () => void;
-};
+import { createContext, useContext, useEffect, useState } from "react";
+import { SidebarContextProps, SidebarContextType } from "../types/types";
 
 const SidebarContext = createContext<SidebarContextType | null>(null);
 

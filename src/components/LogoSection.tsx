@@ -1,10 +1,7 @@
 import { Menu, PlayArrow } from "@mui/icons-material";
 import Button from "./Button";
 import { useSidebar } from "../context/SidebarContext";
-
-type LogoSectionProps = {
-  isFullWidth?: boolean;
-};
+import { LogoSectionProps } from "../types/types";
 
 const LogoSection = ({ isFullWidth = false }: LogoSectionProps) => {
   const { toggleSidebar } = useSidebar();

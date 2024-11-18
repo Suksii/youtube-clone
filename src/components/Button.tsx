@@ -1,7 +1,7 @@
-import { cva, VariantProps } from "class-variance-authority";
-import { ComponentProps, ReactNode } from "react";
+import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
 import Title from "../utils/Title";
+import { ButtonProps } from "../types/types";
 
 export const buttonStyles = cva(["transition-colors"], {
   variants: {
@@ -28,13 +28,6 @@ export const buttonStyles = cva(["transition-colors"], {
     size: "default",
   },
 });
-
-type ButtonProps = VariantProps<typeof buttonStyles> &
-  ComponentProps<"button"> & {
-    children?: ReactNode;
-    customTitle?: string;
-    titlePosition?: string;
-  };
 
 const Button = ({
   variant,

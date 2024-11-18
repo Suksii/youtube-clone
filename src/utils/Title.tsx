@@ -1,7 +1,4 @@
-type TitleProps = {
-  title: string;
-  titlePosition?: string;
-};
+import { TitleProps } from "../types/types";
 
 const Title = ({
   title,

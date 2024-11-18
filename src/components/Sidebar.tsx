@@ -14,8 +14,12 @@ import {
   SportsEsportsOutlined,
   EmojiEventsOutlined,
 } from "@mui/icons-material";
-import { ReactNode } from "react";
 import { useSidebar } from "../context/SidebarContext";
+import {
+  SmallSidebarItemProps,
+  LargeSidebarItemProps,
+  LargeSidebarProps,
+} from "../types/types";
 import LogoSection from "./LogoSection";
 
 export const Sidebar = () => {
@@ -150,11 +154,11 @@ export const Sidebar = () => {
       {isSmallOpen && (
         <div
           onClick={closeSidebar}
-          className="lg:hidden fixed inset-0 z-40 bg-secondary-dark bg-opacity-50"
+          className="lg:hidden fixed inset-0 z-50 bg-secondary-dark bg-opacity-50"
         ></div>
       )}
       <div
-        className={`lg:sticky absolute top-0 bg-white overflow-y-auto flex-col w-56 scrollbar-hidden transform transition-transform duration-300 z-40 ${
+        className={`lg:sticky absolute top-0 bg-white overflow-y-auto flex-col w-56 scrollbar-hidden transform transition-transform duration-300 z-50 ${
           isLargeOpen ? "lg:flex" : "lg:hidden"
         } ${
           isSmallOpen
@@ -217,23 +221,6 @@ export const Sidebar = () => {
       </div>
     </>
   );
-};
-
-type SmallSidebarItemProps = {
-  icon: ReactNode;
-  name: string;
-  url: string;
-};
-
-type LargeSidebarItemProps = {
-  icon: ReactNode;
-  name: string;
-  url: string;
-  isActive?: boolean;
-};
-type LargeSidebarProps = {
-  children: ReactNode;
-  title: string;
 };
 
 const SmallSidebarItem = ({ icon, name, url }: SmallSidebarItemProps) => {
