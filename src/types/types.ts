@@ -6,16 +6,36 @@ export type SidebarContextProps = {
     children: ReactNode;
   };
 
+export type CategoriesProps = {
+  categories: string[]
+};
+
 export type VideoProps = {
-    id: number;
+  videoId: number;
+  title: string;
+  channelId: string;
+  channelTitle: string;
+  description: string;
+  channelThumbnail?: { url?: string | undefined }[] | undefined;
+  viewCount: string;
+  publishedAt: string;
+  thumbnail?: { url?: string | undefined }[] | undefined;
+  videoUrl: string;
+  lengthText: number;
+  };
+
+  export type Video = {
+    videoId: number;
     title: string;
-    channel: string;
-    channelImg: string;
-    views: number;
-    postedAt: Date;
-    thumbnailUrl: string;
+    channelId: string;
+    channelTitle: string;
+    description: string;
+    channelThumbnail?: { url?: string | undefined }[] | undefined;
+    viewCount: string;
+    publishedAt: string;
+    thumbnail?: { url?: string | undefined }[] | undefined;
     videoUrl: string;
-    duration: number;
+    lengthText: number;
   };
 
   export type SmallSidebarItemProps = {
@@ -64,3 +84,8 @@ export type ButtonProps = VariantProps<typeof buttonStyles> &
     customTitle?: string;
     titlePosition?: string;
   };
+
+  export type ApiResponseVideos = {
+    data: Video[];
+    filters: { filter: string }[];
+  }
