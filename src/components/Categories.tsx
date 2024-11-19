@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
+import { CategoriesProps } from "../types/types";
 
-const Categories = () => {
+const Categories = ({ categories }: CategoriesProps) => {
   const categoryData = [
     "All",
     "Typescript",
@@ -47,7 +48,7 @@ const Categories = () => {
         className="flex whitespace-nowrap gap-2 w-fit transition-transform"
         style={{ transform: `translateX(-${translate}px)` }}
       >
-        {categoryData.map((category) => {
+        {categories.map((category) => {
           return (
             <Button
               className="p-2 rounded-lg whitespace-nowrap"

@@ -1,8 +1,10 @@
+import { useEffect, useState } from "react";
 import "./App.css";
 import Categories from "./components/Categories";
 import Header from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
 import VideoContainer from "./components/VideoContainer";
+import { request } from "./utils/api";
 
 function App() {
   const videoData = [
@@ -65,6 +67,23 @@ function App() {
     },
   ];
 
+  const [videosData, setVideosData] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await request.get("/home");
+        console.log(response.data);
+        setVideosData(response.data.data || []);
+        setCategories(response.data.filters.map((item) => item.filter) || []);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="flex flex-col max-h-screen">
       <Header />
@@ -72,7 +91,7 @@ function App() {
         <Sidebar />
         <div className="overflow-hidden px-6 py-4">
           <div className="sticky top-0 z-40">
-            <Categories />
+            <Categories categories={categories} />
           </div>
           <div className="gap-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] z-10">
             {videoData.map((video) => (
