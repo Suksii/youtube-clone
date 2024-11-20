@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-// import { FormatView } from "../utils/FormatView";
+import { FormatView } from "../utils/FormatView";
 import { FormatDuration } from "../utils/FormatDuration";
-// import { format } from "timeago.js";
+import { format } from "timeago.js";
 import Title from "../utils/Title";
 import { VideoProps } from "../types/types";
 
@@ -11,8 +11,8 @@ const VideoContainer = ({
   // channelId,
   channelTitle,
   channelThumbnail,
-  // viewCount,
-  // publishedAt,
+  viewCount,
+  publishedAt,
   thumbnail,
   // videoUrl,
   lengthText,
@@ -37,13 +37,17 @@ const VideoContainer = ({
       onMouseLeave={() => setIsVideoPlaying(false)}
     >
       <a href={``} className="relative aspect-video">
-        {thumbnail && thumbnail[0]?.url && (
+        {thumbnail && thumbnail?.[0]?.url ? (
           <img
-            src={thumbnail?.[0]?.url || "https://yt3.ggpht.com/IBN0nzvKgbaCGwfCfJI3totarpmZDrKyDVolgZ9UB6nWkMkBLrT648juwl7aQ_KXiRsVT7O_8A=s68-c-k-c0x00ffffff-no-rj"}
+            src={thumbnail?.[0]?.url}
             className={`${
               isVideoPlaying ? "rounded-0" : "rounded-xl"
             } transition-[border-radius] duration-200 w-full h-full object-cover`}
           />
+        ) : (
+          <div className="h-full flex items-center justify-center bg-gray-300 text-xl">
+            No thumbnail
+          </div>
         )}
         <div className="absolute bottom-1 right-1 bg-secondary-dark text-secondary text-sm py-0.5 px-1 rounded-md">
           {FormatDuration(lengthText)}
@@ -62,16 +66,18 @@ const VideoContainer = ({
       </a>
       <div className="flex gap-2">
         <a href={`/`} className="flex-shrink-0">
-          {channelThumbnail && channelThumbnail[0].url && (
-            <img
-              src={channelThumbnail?.[0]?.url || "https://yt3.ggpht.com/IBN0nzvKgbaCGwfCfJI3totarpmZDrKyDVolgZ9UB6nWkMkBLrT648juwl7aQ_KXiRsVT7O_8A=s68-c-k-c0x00ffffff-no-rj"}
-              title={channelTitle}
-              className="w-12 h-12 rounded-full object-cover bg-black"
-            />
+          {channelThumbnail && channelThumbnail?.[0].url ? <img
+            src={
+              channelThumbnail?.[0]?.url
+            }
+            title={channelTitle}
+            className="w-12 h-12 rounded-full object-cover"
+          /> : (
+            <div className="w-12 h-12 rounded-full bg-green-300"/>
           )}
         </a>
         <div className="flex flex-col gap-1">
-          <a href={``} className="font-bold" title={title}>
+          <a href={``} className="font-bold line-clamp-2" title={title}>
             {title}
           </a>
           <a
@@ -84,12 +90,12 @@ const VideoContainer = ({
               titlePosition="bottom-full left-1/2 -translate-x-1/2 mb-4"
             />
           </a>
-          {/* <div
+          <div
             className="text-secondary-text text-sm"
             title={`${FormatView(viewCount)} views • ${format(publishedAt)}`}
           >
             {FormatView(viewCount)} views • {format(publishedAt)}
-          </div> */}
+          </div>
         </div>
       </div>
     </div>

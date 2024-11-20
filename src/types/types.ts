@@ -12,6 +12,7 @@ export type CategoriesProps = {
 
 export type VideoProps = {
   videoId: number;
+  type: string;
   title: string;
   channelId: string;
   channelTitle: string;
@@ -26,6 +27,7 @@ export type VideoProps = {
 
   export type Video = {
     videoId: number;
+    type: string;
     title: string;
     channelId: string;
     channelTitle: string;
@@ -85,7 +87,7 @@ export type ButtonProps = VariantProps<typeof buttonStyles> &
     titlePosition?: string;
   };
 
-  export type ApiResponseVideos = {
-    data: Video[];
-    filters: { filter: string }[];
-  }
+  // export type ApiResponseVideos = {
+  //   data: Video[];
+  //   filters: { filter: string }[];
+  // }

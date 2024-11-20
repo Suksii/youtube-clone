@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import { Sidebar } from "./components/Sidebar";
 import VideoContainer from "./components/VideoContainer";
 import { request } from "./utils/api";
-import { ApiResponseVideos, Video } from "./types/types";
+import { Video } from "./types/types";
 
 function App() {
   // const videoData = [
@@ -74,19 +74,11 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await request.get<ApiResponseVideos>("/home");
+        const response = await request.get("/home");
         console.log(response.data);
-        setVideosData(
-          response.data?.data?.map((item) => ({
-            ...item,
-            channelThumbnail:
-              item.channelThumbnail?.filter((thumb) => thumb?.url) || [],
-          })) || []
-        );
+        setVideosData(response.data?.data || []);
         setCategories(
-          response.data?.filters?.map(
-            (item: { filter: string }) => item.filter
-          ) || []
+          response.data?.filters?.map((item: any) => item?.filter) || []
         );
       } catch (error) {
         console.error(error);
@@ -105,9 +97,11 @@ function App() {
             <Categories categories={categories} />
           </div>
           <div className="gap-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] z-10">
-            {videosData.map((video) => (
-              <VideoContainer key={video.videoId} {...video} />
-            ))}
+            {videosData
+              .filter((video) => video.type == "video")
+              .map((video) => (
+                <VideoContainer key={video.videoId} {...video} />
+              ))}
           </div>
         </div>
       </div>
