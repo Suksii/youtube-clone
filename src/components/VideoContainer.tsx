@@ -50,7 +50,7 @@ const VideoContainer = ({
           </div>
         )}
         <div className="absolute bottom-1 right-1 bg-secondary-dark text-secondary text-sm py-0.5 px-1 rounded-md">
-          {FormatDuration(lengthText)}
+          {lengthText}
         </div>
         <video
           ref={videoRef}
