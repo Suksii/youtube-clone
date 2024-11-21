@@ -55,9 +55,9 @@ const VideoContainer = ({
             No thumbnail
           </div>
         )}
-        <div className="absolute bottom-1 right-1 font-semibold bg-secondary-dark text-secondary text-sm py-0.5 px-1 rounded-md">
+        {!isLive && <div className="absolute bottom-1 right-1 font-semibold bg-secondary-dark text-secondary text-sm py-0.5 px-1 rounded-md">
           {lengthText}
-        </div>
+        </div>}
         <video
           ref={videoRef}
           src={
