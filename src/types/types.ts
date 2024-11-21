@@ -22,7 +22,7 @@ export type VideoProps = {
   publishedAt: string;
   thumbnail?: { url?: string | undefined }[] | undefined;
   videoUrl: string;
-  lengthText: number;
+  lengthText: string;
   };
 
   export type Video = {
@@ -37,7 +37,7 @@ export type VideoProps = {
     publishedAt: string;
     thumbnail?: { url?: string | undefined }[] | undefined;
     videoUrl: string;
-    lengthText: number;
+    lengthText: string;
   };
 
   export type SmallSidebarItemProps = {
