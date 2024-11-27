@@ -8,3 +8,7 @@ This is a YouTube clone project built in React using Typescript.
   - `useState, useEffect, useRef`
   - `materialUI icons`
   - `tailwindCSS`
+ 
+# Main
+
+![youtube-clone-main](https://github.com/user-attachments/assets/08934313-be9a-452b-8d01-fb2bcf6f6ca9)
