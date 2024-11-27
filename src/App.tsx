@@ -6,9 +6,9 @@ import { Sidebar } from "./components/Sidebar";
 import VideoContainer from "./components/VideoContainer";
 import { request } from "./utils/api";
 import { Video } from "./types/types";
+import VideoPage from "./components/pages/VideoPage";
 
 function App() {
-  
   const [videosData, setVideosData] = useState<Video[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
 
@@ -29,24 +29,27 @@ function App() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Header />
-      <div className="grid grid-cols-[auto,1fr] flex-grow overflow-auto">
-        <Sidebar />
-        <div className="overflow-hidden px-6 py-4">
-          <div className="sticky top-0 z-40">
-            <Categories categories={categories} />
-          </div>
-          <div className="gap-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] z-10">
-            {videosData
-              .filter((video) => video.type == "video")
-              .map((video) => (
-                <VideoContainer key={video.videoId} {...video} />
-              ))}
+    <>
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <div className="grid grid-cols-[auto,1fr] flex-grow overflow-auto">
+          <Sidebar />
+          <div className="overflow-hidden px-6 py-4">
+            <div className="sticky top-0 z-40">
+              <Categories categories={categories} />
+            </div>
+            <div className="gap-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] z-10">
+              {videosData
+                .filter((video) => video.type == "video")
+                .map((video) => (
+                  <VideoContainer key={video.videoId} {...video} />
+                ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <VideoPage />
+    </>
   );
 }
 
