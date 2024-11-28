@@ -2,6 +2,11 @@ import Title from "../components/Title";
 import RelatedVideos from "../components/RelatedVideos";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
+import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
+import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
+import TurnedInNotOutlinedIcon from "@mui/icons-material/TurnedInNotOutlined";
+import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 
 const VideoPage = () => {
   // const videos = [
@@ -22,35 +27,60 @@ const VideoPage = () => {
       : description;
 
   return (
-    <div className="py-4 px-24">
+    <div className="py-4 px-6 md:px-24">
       <div className="flex flex-col md:flex-row gap-6">
         <div style={{ flex: 3 }} className="flex flex-col gap-4">
           <iframe
             src="https://www.youtube.com/embed/tgbNymZ7vqY"
+            frameBorder="0"
+            allowFullScreen
             className="rounded-xl w-full h-full aspect-video"
           ></iframe>
           <h2 className="text-xl font-bold line-clamp-2">
             How To Handle Permissions Like A Senior Dev
           </h2>
-          <div className="flex gap-2 items-center">
-            <div className="w-12 h-12 rounded-full flex-shrink-0 bg-green-300" />
-            <div className="flex flex-col gap-1 w-full">
-              <Link
-                to={``}
-                className="w-fit font-semibold leading-3"
-              >
-                Channel Name
-                <Title
-                  title={"Channel Name"}
-                  titlePosition="bottom-full left-1/2 -translate-x-1/2 mb-4"
-                />
-              </Link>
-              <div className="text-secondary-text text-[12.5px] leading-3">
-                1.33M subscribers
+          <div className="flex flex-col md:flex-row gap-2 md:justify-between md:items-center">
+            <div className="flex gap-2 items-center">
+              <div className="w-12 h-12 rounded-full flex-shrink-0 bg-green-300" />
+              <div className="flex flex-col gap-1 w-full">
+                <Link to={``} className="w-fit font-semibold leading-3">
+                  Channel Name
+                  <Title
+                    title={"Channel Name"}
+                    titlePosition="bottom-full left-1/2 -translate-x-1/2 mb-4"
+                  />
+                </Link>
+                <div className="text-secondary-text text-[12.5px] leading-3">
+                  1.33M subscribers
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="flex items-center bg-secondary rounded-full">
+                <div className="flex  gap-2 hover:bg-secondary-hover py-1.5 px-3 rounded-l-full cursor-pointer font-semibold">
+                  <ThumbUpAltOutlinedIcon />
+                  <p>1K</p>
+                </div>
+                <div className="border-l border-x-secondary-border h-6" />
+                <div className="hover:bg-secondary-hover py-1.5 px-4 rounded-r-full cursor-pointer">
+                  <ThumbDownOffAltOutlinedIcon />
+                </div>
+              </div>
+              <div className="flex items-center gap-2 bg-secondary hover:bg-secondary-hover py-1.5 px-3 rounded-full cursor-pointer">
+                <ReplyOutlinedIcon style={{ transform: "rotateY(180deg)" }} />
+                <p className="font-semibold">Share</p>
+              </div>
+              <div className="flex items-center gap-2 bg-secondary hover:bg-secondary-hover py-1.5 px-3 rounded-full cursor-pointer">
+                <TurnedInNotOutlinedIcon />
+                <p className="font-semibold">Save</p>
+              </div>
+              <div className="bg-secondary hover:bg-secondary-hover p-1.5 rounded-full cursor-pointer">
+                <MoreHorizOutlinedIcon />
               </div>
             </div>
           </div>
-          <div className="bg-secondary-border bg-opacity-20 w-full h-fit rounded-lg p-2 leading-5">
+
+          <div className="bg-secondary w-full h-fit rounded-lg p-2 leading-5">
             <div className="flex gap-2 items-center">
               <h3 className="font-semibold">226K views 1 day ago</h3>
               <p className="text-secondary-text">#hashtag</p>
