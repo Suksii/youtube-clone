@@ -3,7 +3,7 @@ import { FormatView } from "../utils/FormatView";
 import { FormatDuration } from "../utils/FormatDuration";
 import { format } from "timeago.js";
 import SensorsIcon from '@mui/icons-material/Sensors';
-import Title from "../utils/Title";
+import Title from "./Title";
 import { VideoProps } from "../types/types";
 
 const VideoContainer = ({

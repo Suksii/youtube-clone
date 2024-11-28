@@ -1,9 +1,9 @@
-import { Sidebar } from "../Sidebar";
-import Categories from "../Categories";
-import VideoContainer from "../VideoContainer";
+import { Sidebar } from "../components/Sidebar";
+import Categories from "../components/Categories";
+import VideoContainer from "../components/VideoContainer";
 import { useEffect, useState } from "react";
-import { Video } from "../../types/types";
-import { request } from "../../utils/api";
+import { Video } from "../types/types";
+import { request } from "../utils/api";
 
 const HomePage = () => {
   const [videosData, setVideosData] = useState<Video[]>([]);

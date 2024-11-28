@@ -1,6 +1,6 @@
 import { cva } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
-import Title from "../utils/Title";
+import Title from "./Title";
 import { ButtonProps } from "../types/types";
 
 export const buttonStyles = cva(["transition-colors"], {

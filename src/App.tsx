@@ -1,7 +1,7 @@
 import "./App.css";
 import Header from "./components/Header";
-import VideoPage from "./components/pages/VideoPage";
-import HomePage from "./components/pages/HomePage";
+import VideoPage from "./pages/VideoPage";
+import HomePage from "./pages/HomePage";
 import { Route, Routes } from "react-router-dom";
 
 function App() {

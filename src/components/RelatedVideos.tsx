@@ -7,16 +7,19 @@ const RelatedVideos = () => {
       videoUrl: "",
       videoTitle: "YouTube video title",
       channelName: "Channel Name",
+      views: 123125
     },
     {
       videoUrl: "",
       videoTitle: "YouTube video title",
       channelName: "Channel Name",
+      views: 123125
     },
     {
       videoUrl: "",
       videoTitle: "YouTube video title",
       channelName: "Channel Name",
+      views: 123125
     },
   ];
 
