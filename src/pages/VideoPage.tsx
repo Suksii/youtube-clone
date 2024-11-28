@@ -7,15 +7,10 @@ import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutl
 import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import TurnedInNotOutlinedIcon from "@mui/icons-material/TurnedInNotOutlined";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
+import Comments from "../components/Comments";
 
 const VideoPage = () => {
-  // const videos = [
-  //     {
-  //         title:
-  //     }
-  // ]
-
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const maxChars = 300;
   const description =
@@ -32,7 +27,6 @@ const VideoPage = () => {
         <div style={{ flex: 3 }} className="flex flex-col gap-4">
           <iframe
             src="https://www.youtube.com/embed/tgbNymZ7vqY"
-            frameBorder="0"
             allowFullScreen
             className="rounded-xl w-full h-full aspect-video"
           ></iframe>
@@ -110,6 +104,7 @@ const VideoPage = () => {
               )}
             </div>
           </div>
+          <Comments />
         </div>
 
         <div style={{ flex: 1 }}>
