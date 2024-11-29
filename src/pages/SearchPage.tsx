@@ -5,7 +5,16 @@ import TuneIcon from "@mui/icons-material/Tune";
 import Title from "../components/Title";
 
 const SearchPage = () => {
-  const searchedVideos = [
+  type SearchedVideoType = {
+    videoUrl: string;
+    videoTitle: string;
+    description: string;
+    channelName: string;
+    views: number;
+    postedAt: string;
+  };
+
+  const searchedVideos: SearchedVideoType[] = [
     {
       videoUrl: "",
       videoTitle: "YouTube video title",
@@ -32,7 +41,7 @@ const SearchPage = () => {
     },
   ];
 
-  const categories = [
+  const categories: string[] = [
     "All",
     "Shorts",
     "Videos",
@@ -74,7 +83,9 @@ const SearchPage = () => {
                 {searchedVideo.channelName}
               </p>
             </div>
-            <p className="text-secondary-text text-sm line-clamp-1">{searchedVideo.description}</p>
+            <p className="text-secondary-text text-sm line-clamp-1">
+              {searchedVideo.description}
+            </p>
             <Button
               className="absolute top-0 right-0 rounded-full w-9 h-9 flex items-center justify-center"
               variant="ghost"

@@ -2,24 +2,31 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Button from "./Button";
 
 const RelatedVideos = () => {
-  const relatedVideos = [
+  type RelatedVideosType = {
+    videoUrl: string;
+    videoTitle: string;
+    channelName: string;
+    views: number;
+  };
+
+  const relatedVideos: RelatedVideosType[] = [
     {
       videoUrl: "",
       videoTitle: "YouTube video title",
       channelName: "Channel Name",
-      views: 123125
+      views: 123125,
     },
     {
       videoUrl: "",
       videoTitle: "YouTube video title",
       channelName: "Channel Name",
-      views: 123125
+      views: 123125,
     },
     {
       videoUrl: "",
       videoTitle: "YouTube video title",
       channelName: "Channel Name",
-      views: 123125
+      views: 123125,
     },
   ];
 

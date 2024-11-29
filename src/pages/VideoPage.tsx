@@ -85,8 +85,9 @@ const VideoPage = () => {
                 {description.length > maxChars && !isExpanded && (
                   <span
                     onClick={() => setIsExpanded(true)}
-                    className="font-semibold cursor-pointer ml-1 inline-block"
+                    className="font-semibold cursor-pointer inline-block relative"
                   >
+                    <div className="absolute -left-1 top-1/2 -translate-y-1/2 w-12 h-full bg-gradient-to-r from-secondary via-50% to-transparent"></div>
                     ...more
                   </span>
                 )}
