@@ -65,7 +65,7 @@ const Comments = () => {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        {[...Array(10)].map(() => (
+        {[...Array(4)].map(() => (
           <Comment />
         ))}
       </div>

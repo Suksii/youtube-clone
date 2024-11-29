@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import VideoPage from "./pages/VideoPage";
 import HomePage from "./pages/HomePage";
 import { Route, Routes } from "react-router-dom";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/video" element={<VideoPage />} />
+          <Route path="/searched" element={<SearchPage />} />
         </Routes>
       </div>
     </>

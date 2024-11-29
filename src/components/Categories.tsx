@@ -40,10 +40,10 @@ const Categories = ({ categories }: CategoriesProps) => {
     return () => {
       observer.disconnect();
     };
-  }, [categoryData, translate]);
+  }, [categories, translate]);
 
   return (
-    <div className="relative overflow-hidden mb-4" ref={containerRef}>
+    <div className="relative overflow-hidden" ref={containerRef}>
       <div
         className="flex whitespace-nowrap gap-2 w-fit transition-transform"
         style={{ transform: `translateX(-${translate}px)` }}
@@ -51,7 +51,7 @@ const Categories = ({ categories }: CategoriesProps) => {
         {categories.map((category) => {
           return (
             <Button
-              className="p-2 rounded-lg whitespace-nowrap"
+              className="p-2 rounded-lg whitespace-nowrap text-sm font-semibold"
               title={category}
               variant={selectedCategory === category ? "dark" : "default"}
               key={category}

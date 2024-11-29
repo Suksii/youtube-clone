@@ -30,7 +30,7 @@ const VideoPage = () => {
             allowFullScreen
             className="rounded-xl w-full h-full aspect-video"
           ></iframe>
-          <h2 className="text-xl font-bold line-clamp-2">
+          <h2 className="text-xl font-bold line-clamp-2 pb-2">
             How To Handle Permissions Like A Senior Dev
           </h2>
           <div className="flex flex-col md:flex-row gap-2 md:justify-between md:items-center">
