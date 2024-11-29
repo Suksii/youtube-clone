@@ -2,6 +2,7 @@ import { useState } from "react";
 import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
 import SentimentVerySatisfiedOutlinedIcon from "@mui/icons-material/SentimentVerySatisfiedOutlined";
 import Button from "./Button";
+import Comment from "./Comment";
 
 const Comments = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -14,7 +15,7 @@ const Comments = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-6">
       <div className="flex gap-8">
         <p className="text-xl font-bold">54 Comments</p>
         <div className="flex items-center gap-2">
@@ -62,6 +63,11 @@ const Comments = () => {
             </div>
           )}
         </div>
+      </div>
+      <div className="flex flex-col gap-2">
+        {[...Array(10)].map(() => (
+          <Comment />
+        ))}
       </div>
     </div>
   );
