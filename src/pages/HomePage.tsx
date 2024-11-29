@@ -32,7 +32,7 @@ const HomePage = () => {
         <div className="sticky top-0 z-40">
           <Categories categories={categories} />
         </div>
-        <div className="gap-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] z-10">
+        <div className="gap-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] z-10 py-6">
           {videosData
             .filter((video) => video.type == "video")
             .map((video) => (
