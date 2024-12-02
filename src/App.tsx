@@ -12,8 +12,8 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/video" element={<VideoPage />} />
-          <Route path="/searched" element={<SearchPage />} />
+          <Route path="/watch" element={<VideoPage />} />
+          <Route path="/results?search_query=:id" element={<SearchPage />} />
         </Routes>
       </div>
     </>
