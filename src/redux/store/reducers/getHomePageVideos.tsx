@@ -5,7 +5,9 @@ export const getHomePageVideos = createAsyncThunk(
   "youtubeClone/homePageVideos",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await request.get("/search", {
+      const {
+        data: { items },
+      } = await request.get("/search", {
         params: {
           part: "snippet",
           maxResults: 20,
@@ -13,8 +15,8 @@ export const getHomePageVideos = createAsyncThunk(
           type: "video",
         },
       });
-      console.log(response.data);
-      return response.data.items;
+      console.log(items);
+      return items;
     } catch (error) {
       return rejectWithValue("Failed to fetch videos");
     }

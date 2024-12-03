@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Video, RelatedVideos } from "../../../types/types";
+import { getHomePageVideos } from "../reducers/getHomePageVideos";
 
 type InitialState = {
   videos: Video[];
@@ -23,7 +24,16 @@ const youtubeSlice = createSlice({
       state.searchTerm = action.payload;
     },
   },
-  // extraReducers: (builder = {}),
+  extraReducers: (builder) => {
+    builder.addCase(
+      getHomePageVideos.fulfilled,
+      (state, action: PayloadAction<Video[]>) => {
+        state.videos = action.payload;
+      }
+    );
+  },
 });
+
+export const { setSearchTerm } = youtubeSlice.actions;
 
 export default youtubeSlice.reducer;

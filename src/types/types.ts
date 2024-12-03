@@ -11,33 +11,33 @@ export type CategoriesProps = {
 };
 
 export type VideoProps = {
-  videoId: number;
-  type: string;
+  videoId: string;
   title: string;
-  channelId: string;
   channelTitle: string;
-  description: string;
-  channelThumbnail?: { url?: string | undefined }[] | undefined;
-  viewCount: string;
-  publishedAt: string;
-  thumbnail?: { url?: string | undefined }[] | undefined;
-  videoUrl: string;
-  lengthText: string;
+  thumbnails: {
+    high: { url: string };
+    medium: { url: string };
+    default: { url: string };
+  };
+  channelThumbnail?: { url: string };
+  liveBroadcastContent: string;
 };
 
 export type Video = {
-  videoId: number;
-  type: string;
-  title: string;
-  channelId: string;
-  channelTitle: string;
-  description: string;
-  channelThumbnail?: { url?: string | undefined }[] | undefined;
-  viewCount: string;
-  publishedAt: string;
-  thumbnail?: { url?: string | undefined }[] | undefined;
-  videoUrl: string;
-  lengthText: string;
+  id: { videoId: string };
+  snippet: {
+    title: string;
+    channelTitle: string;
+    channelId: string;
+    description: string;
+    thumbnails: {
+      high: { url: string };
+      medium: { url: string };
+      default: { url: string };
+    };
+    publishedAt: string;
+    liveBroadcastContent: string;
+  };
 };
 
 export type SmallSidebarItemProps = {

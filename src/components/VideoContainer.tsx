@@ -1,28 +1,24 @@
 import { useEffect, useRef, useState } from "react";
 import { FormatView } from "../utils/FormatView";
 import { format } from "timeago.js";
-import SensorsIcon from '@mui/icons-material/Sensors';
+import SensorsIcon from "@mui/icons-material/Sensors";
 import Title from "./Title";
 import { VideoProps } from "../types/types";
+import { Link } from "react-router-dom";
 
 const VideoContainer = ({
   videoId,
   title,
-  // channelId,
   channelTitle,
-  channelThumbnail,
-  viewCount,
-  publishedAt,
-  thumbnail,
-  // videoUrl,
-  lengthText,
+  thumbnails,
+  liveBroadcastContent,
 }: VideoProps) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
   const [isLive, setIsLive] = useState<boolean>(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    if (lengthText == "LIVE") setIsLive(true);
+    if (liveBroadcastContent == "LIVE") setIsLive(true);
   }, []);
 
   useEffect(() => {
@@ -41,10 +37,13 @@ const VideoContainer = ({
       onMouseEnter={() => setIsVideoPlaying(true)}
       onMouseLeave={() => setIsVideoPlaying(false)}
     >
-      <a href={``} className="relative aspect-video">
-        {thumbnail && thumbnail?.[0]?.url ? (
+      <Link
+        to={`https://www.youtube.com/watch?v=${videoId}`}
+        className="relative aspect-video"
+      >
+        {thumbnails && thumbnails.high ? (
           <img
-            src={thumbnail?.[0]?.url}
+            src={thumbnails.high.url}
             className={`${
               isVideoPlaying ? "rounded-0" : "rounded-xl"
             } transition-[border-radius] duration-200 w-full h-full object-cover`}
@@ -54,9 +53,11 @@ const VideoContainer = ({
             No thumbnail
           </div>
         )}
-        {!isLive && <div className="absolute bottom-1 right-1 font-semibold bg-secondary-dark text-secondary text-sm py-0.5 px-1 rounded-md">
-          {lengthText}
-        </div>}
+        {/* {!isLive && (
+          <div className="absolute bottom-1 right-1 font-semibold bg-secondary-dark text-secondary text-sm py-0.5 px-1 rounded-md">
+            {lengthText}
+          </div>
+        )} */}
         <video
           ref={videoRef}
           src={
@@ -68,12 +69,12 @@ const VideoContainer = ({
             isVideoPlaying ? "opacity-100 delay-200" : "opacity-0"
           } transition-opacity duration-300`}
         />
-      </a>
+      </Link>
       <div className="flex gap-2">
-        <a href={`/`} className="flex-shrink-0 relative h-fit">
-          {channelThumbnail && channelThumbnail?.[0].url ? (
+        <Link to={`/`} className="flex-shrink-0 relative h-fit">
+          {thumbnails.default && thumbnails.default.url ? (
             <img
-              src={channelThumbnail?.[0]?.url}
+              src={thumbnails.default.url}
               title={channelTitle}
               className={`${
                 isLive ? "ring-2 ring-red-600" : ""
@@ -87,13 +88,13 @@ const VideoContainer = ({
               <p className="uppercase text-[10px] font-semibold">Live</p>
             </div>
           )}
-        </a>
+        </Link>
         <div className="flex flex-col gap-1">
-          <a href={``} className="font-bold line-clamp-2" title={title}>
+          <Link to={``} className="font-bold line-clamp-2" title={title}>
             {title}
-          </a>
-          <a
-            href={``}
+          </Link>
+          <Link
+            to={``}
             className="w-fit text-secondary-text text-sm relative group leading-3"
           >
             {channelTitle}
@@ -101,8 +102,8 @@ const VideoContainer = ({
               title={channelTitle}
               titlePosition="bottom-full left-1/2 -translate-x-1/2 mb-4"
             />
-          </a>
-          <div
+          </Link>
+          {/* <div
             className="text-secondary-text text-sm leading-3"
             title={`${FormatView(viewCount)} views • ${format(publishedAt)}`}
           >
@@ -113,11 +114,13 @@ const VideoContainer = ({
                 {FormatView(viewCount)} views • {format(publishedAt)}
               </span>
             )}
-          </div>
+          </div> */}
           {isLive && (
             <div className="flex gap-1 items-center w-fit px-0.5 bg-red-600 rounded-sm leading-4">
-              <SensorsIcon className="text-white" fontSize="small"/>
-              <p className="text-white text-[12px] uppercase font-semibold">Live</p>
+              <SensorsIcon className="text-white" fontSize="small" />
+              <p className="text-white text-[12px] uppercase font-semibold">
+                Live
+              </p>
             </div>
           )}
         </div>

@@ -1,38 +1,12 @@
 import { Sidebar } from "../components/Sidebar";
 import Categories from "../components/Categories";
 import VideoContainer from "../components/VideoContainer";
-import { useEffect, useState } from "react";
-import { Video } from "../types/types";
-import { request } from "../utils/api";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store/store";
 import { getHomePageVideos } from "../redux/store/reducers/getHomePageVideos";
 
 const HomePage = () => {
-  const [videosData, setVideosData] = useState<Video[]>([]);
-  const [categories, setCategories] = useState<string[]>([]);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await request.get("/videos", {
-  //         params: {
-  //           part: "snippet",
-  //           type: "video",
-  //         },
-  //       });
-  //       console.log(response.data);
-  //       setVideosData(response.data?.data || []);
-  //       setCategories(
-  //         response.data?.filters?.map((item: any) => item?.filter) || []
-  //       );
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
-
   const dispatch = useDispatch<AppDispatch>();
   const { videos } = useSelector((state: RootState) => state.youtubeClone);
 
@@ -45,15 +19,27 @@ const HomePage = () => {
       <Sidebar />
       <div className="overflow-hidden px-6 py-4">
         <div className="sticky top-0 z-40">
-          <Categories categories={categories} />
+          {/* <Categories categories={categories} /> */}
         </div>
-        <div className="gap-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] z-10 py-6">
-          {videosData
-            .filter((video) => video.type == "video")
-            .map((video) => (
-              <VideoContainer key={video.videoId} {...video} />
+
+        {videos && videos.length > 0 ? (
+          <div className="gap-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] z-10 py-6">
+            {videos.map((video) => (
+              <VideoContainer
+                key={video.id.videoId}
+                videoId={video.id.videoId}
+                title={video.snippet.title}
+                channelTitle={video.snippet.channelTitle}
+                thumbnails={video.snippet.thumbnails}
+                liveBroadcastContent={video.snippet.liveBroadcastContent}
+              />
             ))}
-        </div>
+          </div>
+        ) : (
+          <div className="flex items-center justify-center h-full text-2xl font-semibold">
+            No videos found
+          </div>
+        )}
       </div>
     </div>
   );
