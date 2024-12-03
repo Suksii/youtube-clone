@@ -3,11 +3,11 @@ import { ComponentProps, ReactNode } from "react";
 import { buttonStyles } from "../components/Button";
 
 export type SidebarContextProps = {
-    children: ReactNode;
-  };
+  children: ReactNode;
+};
 
 export type CategoriesProps = {
-  categories: string[]
+  categories: string[];
 };
 
 export type VideoProps = {
@@ -23,62 +23,61 @@ export type VideoProps = {
   thumbnail?: { url?: string | undefined }[] | undefined;
   videoUrl: string;
   lengthText: string;
-  };
+};
 
-  export type Video = {
-    videoId: number;
-    type: string;
-    title: string;
-    channelId: string;
-    channelTitle: string;
-    description: string;
-    channelThumbnail?: { url?: string | undefined }[] | undefined;
-    viewCount: string;
-    publishedAt: string;
-    thumbnail?: { url?: string | undefined }[] | undefined;
-    videoUrl: string;
-    lengthText: string;
-  };
+export type Video = {
+  videoId: number;
+  type: string;
+  title: string;
+  channelId: string;
+  channelTitle: string;
+  description: string;
+  channelThumbnail?: { url?: string | undefined }[] | undefined;
+  viewCount: string;
+  publishedAt: string;
+  thumbnail?: { url?: string | undefined }[] | undefined;
+  videoUrl: string;
+  lengthText: string;
+};
 
-  export type SmallSidebarItemProps = {
-    icon: ReactNode;
-    name: string;
-    url: string;
-  };
-  
-  export type LargeSidebarItemProps = {
-    icon: ReactNode;
-    name: string;
-    url: string;
-    isActive?: boolean;
-  };
-  export type LargeSidebarProps = {
-    children: ReactNode;
-    title: string;
-  };
+export type SmallSidebarItemProps = {
+  icon: ReactNode;
+  name: string;
+  url: string;
+};
 
-  export type TitleProps = {
-    title: string;
-    titlePosition?: string;
-  };
+export type LargeSidebarItemProps = {
+  icon: ReactNode;
+  name: string;
+  url: string;
+  isActive?: boolean;
+};
+export type LargeSidebarProps = {
+  children: ReactNode;
+  title: string;
+};
 
-  
+export type TitleProps = {
+  title: string;
+  titlePosition?: string;
+};
+
 export type SearchProps = {
-    isFullWidth: boolean;
-    setIsFullWidth: (value: boolean) => void;
-  };
+  isFullWidth: boolean;
+  setIsFullWidth: (value: boolean) => void;
+};
 
 export type SidebarContextType = {
-    isLargeOpen: boolean;
-    isSmallOpen: boolean;
-    isSmallScreen: boolean;
-    toggleSidebar: () => void;
-    closeSidebar: () => void;
-  };
-  
+  isLargeOpen: boolean;
+  isSmallOpen: boolean;
+  isSmallScreen: boolean;
+  toggleSidebar: () => void;
+  closeSidebar: () => void;
+};
+
 export type LogoSectionProps = {
-    isFullWidth?: boolean;
-  };
+  isFullWidth?: boolean;
+};
 
 export type ButtonProps = VariantProps<typeof buttonStyles> &
   ComponentProps<"button"> & {
@@ -87,7 +86,9 @@ export type ButtonProps = VariantProps<typeof buttonStyles> &
     titlePosition?: string;
   };
 
-  // export type ApiResponseVideos = {
-  //   data: Video[];
-  //   filters: { filter: string }[];
-  // }
+export type RelatedVideos = {
+  thumbnails: [];
+  duration: string;
+  title: string;
+  description: string;
+};

@@ -16,7 +16,8 @@ const RelatedVideos = () => {
 
   const relatedVideos: RelatedVideosType[] = [
     {
-      videoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+      videoUrl:
+        "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
       videoTitle: "YouTube video title",
       channelName: "Channel Name",
       thumbnails: [thumb1, thumb2, thumb3],
@@ -40,15 +41,19 @@ const RelatedVideos = () => {
   ];
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [thumbnailIndex, setThumbnailIndex] = useState<number[]>(relatedVideos.map(() => 0));
+  const [thumbnailIndex, setThumbnailIndex] = useState<number[]>(
+    relatedVideos.map(() => 0)
+  );
 
   useEffect(() => {
-    let interval: number;
+    let interval: NodeJS.Timeout;
     if (hoveredIndex !== null) {
       interval = setInterval(() => {
         setThumbnailIndex((prevIndexes) =>
           prevIndexes.map((index, i) =>
-            i === hoveredIndex ? (index + 1) % relatedVideos[hoveredIndex].thumbnails.length : index
+            i === hoveredIndex
+              ? (index + 1) % relatedVideos[hoveredIndex].thumbnails.length
+              : index
           )
         );
       }, 1000);

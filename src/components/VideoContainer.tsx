@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { FormatView } from "../utils/FormatView";
-import { FormatDuration } from "../utils/FormatDuration";
 import { format } from "timeago.js";
 import SensorsIcon from '@mui/icons-material/Sensors';
 import Title from "./Title";
