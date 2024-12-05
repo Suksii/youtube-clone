@@ -5,6 +5,7 @@ import SensorsIcon from "@mui/icons-material/Sensors";
 import Title from "./Title";
 import { VideoProps } from "../types/types";
 import { Link } from "react-router-dom";
+import { FormatDuration } from "../utils/FormatDuration";
 
 const VideoContainer = ({
   videoId,
@@ -13,6 +14,7 @@ const VideoContainer = ({
   thumbnails,
   liveBroadcastContent,
   viewCount,
+  duration,
   publishedAt,
 }: VideoProps) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
@@ -55,11 +57,11 @@ const VideoContainer = ({
             No thumbnail
           </div>
         )}
-        {/* {!isLive && (
+        {!isLive && (
           <div className="absolute bottom-1 right-1 font-semibold bg-secondary-dark text-secondary text-sm py-0.5 px-1 rounded-md">
-            {lengthText}
+            {FormatDuration(duration)}
           </div>
-        )} */}
+        )}
         <video
           ref={videoRef}
           src={`https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4`}

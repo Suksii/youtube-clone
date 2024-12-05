@@ -25,6 +25,8 @@ const HomePage = () => {
         {videos && videos.length > 0 ? (
           <div className="gap-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] z-10 py-6">
             {videos.map((video) => {
+              console.log(video.contentDetails.duration);
+              
               return (
                 <VideoContainer
                   key={video.id.videoId || video.etag}
@@ -34,6 +36,7 @@ const HomePage = () => {
                   thumbnails={video.snippet.thumbnails}
                   liveBroadcastContent={video.snippet.liveBroadcastContent}
                   viewCount={video.statistics.viewCount}
+                  duration={video.contentDetails.duration}
                   publishedAt={video.snippet.publishedAt}
                 />
               );

@@ -23,6 +23,7 @@ export type VideoProps = {
   liveBroadcastContent: string;
   publishedAt: string;
   viewCount: string;
+  duration: string;
 };
 
 export type Video = {
@@ -43,6 +44,9 @@ export type Video = {
   };
   statistics: {
     viewCount: string;
+  };
+  contentDetails: {
+    duration: string;
   };
 };
 
