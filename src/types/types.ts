@@ -21,10 +21,13 @@ export type VideoProps = {
   };
   channelThumbnail?: { url: string };
   liveBroadcastContent: string;
+  publishedAt: string;
+  viewCount: string;
 };
 
 export type Video = {
   id: { videoId: string };
+  etag: string;
   snippet: {
     title: string;
     channelTitle: string;
@@ -37,6 +40,9 @@ export type Video = {
     };
     publishedAt: string;
     liveBroadcastContent: string;
+  };
+  statistics: {
+    viewCount: string;
   };
 };
 

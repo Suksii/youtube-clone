@@ -24,16 +24,20 @@ const HomePage = () => {
 
         {videos && videos.length > 0 ? (
           <div className="gap-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] z-10 py-6">
-            {videos.map((video) => (
-              <VideoContainer
-                key={video.id.videoId}
-                videoId={video.id.videoId}
-                title={video.snippet.title}
-                channelTitle={video.snippet.channelTitle}
-                thumbnails={video.snippet.thumbnails}
-                liveBroadcastContent={video.snippet.liveBroadcastContent}
-              />
-            ))}
+            {videos.map((video) => {
+              return (
+                <VideoContainer
+                  key={video.id.videoId || video.etag}
+                  videoId={video.id.videoId}
+                  title={video.snippet.title}
+                  channelTitle={video.snippet.channelTitle}
+                  thumbnails={video.snippet.thumbnails}
+                  liveBroadcastContent={video.snippet.liveBroadcastContent}
+                  viewCount={video.statistics.viewCount}
+                  publishedAt={video.snippet.publishedAt}
+                />
+              );
+            })}
           </div>
         ) : (
           <div className="flex items-center justify-center h-full text-2xl font-semibold">

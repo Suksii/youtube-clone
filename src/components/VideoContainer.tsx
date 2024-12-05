@@ -12,6 +12,8 @@ const VideoContainer = ({
   channelTitle,
   thumbnails,
   liveBroadcastContent,
+  viewCount,
+  publishedAt,
 }: VideoProps) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
   const [isLive, setIsLive] = useState<boolean>(false);
@@ -43,7 +45,7 @@ const VideoContainer = ({
       >
         {thumbnails && thumbnails.high ? (
           <img
-            src={thumbnails.high.url}
+            src={thumbnails.medium.url}
             className={`${
               isVideoPlaying ? "rounded-0" : "rounded-xl"
             } transition-[border-radius] duration-200 w-full h-full object-cover`}
@@ -60,9 +62,7 @@ const VideoContainer = ({
         )} */}
         <video
           ref={videoRef}
-          src={
-            "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
-          }
+          src={`https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4`}
           playsInline
           muted
           className={`absolute inset-0 block h-full object-contain ${
@@ -103,7 +103,7 @@ const VideoContainer = ({
               titlePosition="bottom-full left-1/2 -translate-x-1/2 mb-4"
             />
           </Link>
-          {/* <div
+          <div
             className="text-secondary-text text-sm leading-3"
             title={`${FormatView(viewCount)} views • ${format(publishedAt)}`}
           >
@@ -114,7 +114,7 @@ const VideoContainer = ({
                 {FormatView(viewCount)} views • {format(publishedAt)}
               </span>
             )}
-          </div> */}
+          </div>
           {isLive && (
             <div className="flex gap-1 items-center w-fit px-0.5 bg-red-600 rounded-sm leading-4">
               <SensorsIcon className="text-white" fontSize="small" />
