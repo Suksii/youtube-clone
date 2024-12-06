@@ -2,21 +2,16 @@ import { Sidebar } from "../components/Sidebar";
 // import Categories from "../components/Categories";
 import VideoContainer from "../components/VideoContainer";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../redux/store/store";
 import { getHomePageVideos } from "../redux/store/reducers/getHomePageVideos";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 const HomePage = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const { videos } = useSelector((state: RootState) => state.youtubeClone);
+  const dispatch = useAppDispatch();
+  const { videos } = useAppSelector((state) => state.youtubeClone);
 
   useEffect(() => {
     dispatch(getHomePageVideos());
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   dispatch(getChannels());
-  // }, [dispatch]);
 
   return (
     <div className="grid grid-cols-[auto,1fr] flex-grow overflow-auto">

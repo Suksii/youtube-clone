@@ -67,7 +67,7 @@ const VideoContainer = ({
       onMouseLeave={() => setIsVideoPlaying(false)}
     >
       <Link
-        to={`https://www.youtube.com/watch?v=${videoId}`}
+        to={`/watch/${videoId}`}
         className="relative aspect-video"
       >
         {thumbnails && thumbnails.high ? (

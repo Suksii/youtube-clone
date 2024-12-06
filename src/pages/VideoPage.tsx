@@ -1,6 +1,6 @@
 import Title from "../components/Title";
 import RelatedVideos from "../components/RelatedVideos";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useState } from "react";
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
@@ -8,9 +8,13 @@ import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import TurnedInNotOutlinedIcon from "@mui/icons-material/TurnedInNotOutlined";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import Comments from "../components/Comments";
+import { useAppDispatch } from "../redux/hooks";
 
 const VideoPage = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const { id } = useParams();
+  const dispatch = useAppDispatch();
+
 
   const maxChars: number = 300;
   const description: string =
@@ -26,7 +30,7 @@ const VideoPage = () => {
       <div className="flex flex-col md:flex-row gap-6">
         <div style={{ flex: 3 }} className="flex flex-col gap-4">
           <iframe
-            src="https://www.youtube.com/embed/tgbNymZ7vqY"
+            src={`https://www.youtube.com/embed/${id}`}
             allowFullScreen
             className="rounded-xl w-full h-full aspect-video"
           ></iframe>
