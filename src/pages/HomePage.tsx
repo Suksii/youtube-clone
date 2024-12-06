@@ -1,5 +1,5 @@
 import { Sidebar } from "../components/Sidebar";
-import Categories from "../components/Categories";
+// import Categories from "../components/Categories";
 import VideoContainer from "../components/VideoContainer";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +14,10 @@ const HomePage = () => {
     dispatch(getHomePageVideos());
   }, [dispatch]);
 
+  // useEffect(() => {
+  //   dispatch(getChannels());
+  // }, [dispatch]);
+
   return (
     <div className="grid grid-cols-[auto,1fr] flex-grow overflow-auto">
       <Sidebar />
@@ -25,14 +29,13 @@ const HomePage = () => {
         {videos && videos.length > 0 ? (
           <div className="gap-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] z-10 py-6">
             {videos.map((video) => {
-              console.log(video.contentDetails.duration);
-              
               return (
                 <VideoContainer
-                  key={video.id.videoId || video.etag}
-                  videoId={video.id.videoId}
+                  key={video.id || video.etag}
+                  videoId={video.id}
                   title={video.snippet.title}
                   channelTitle={video.snippet.channelTitle}
+                  channelId={video.snippet.channelId}
                   thumbnails={video.snippet.thumbnails}
                   liveBroadcastContent={video.snippet.liveBroadcastContent}
                   viewCount={video.statistics.viewCount}

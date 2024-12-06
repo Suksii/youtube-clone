@@ -14,6 +14,7 @@ export type VideoProps = {
   videoId: string;
   title: string;
   channelTitle: string;
+  channelId: string;
   thumbnails: {
     high: { url: string };
     medium: { url: string };
@@ -27,7 +28,8 @@ export type VideoProps = {
 };
 
 export type Video = {
-  id: { videoId: string };
+  id: string;
+  videoId: string;
   etag: string;
   snippet: {
     title: string;

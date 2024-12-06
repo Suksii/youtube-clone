@@ -6,11 +6,17 @@ import Title from "./Title";
 import { VideoProps } from "../types/types";
 import { Link } from "react-router-dom";
 import { FormatDuration } from "../utils/FormatDuration";
+import { request } from "../utils/api";
+
+type Thumbnail = {
+  url?: string;
+};
 
 const VideoContainer = ({
   videoId,
   title,
   channelTitle,
+  channelId,
   thumbnails,
   liveBroadcastContent,
   viewCount,
@@ -19,8 +25,27 @@ const VideoContainer = ({
 }: VideoProps) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
   const [isLive, setIsLive] = useState<boolean>(false);
+  const [channelThumbnail, setChannelThumbnail] = useState<Thumbnail | null>(
+    null
+  );
+
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  useEffect(() => {
+    const getChannelDetails = async () => {
+      const {
+        data: { items },
+      } = await request("/channels", {
+        params: {
+          part: "snippet",
+          id: channelId,
+        },
+      });
+      setChannelThumbnail(items[0].snippet.thumbnails.default);
+      console.log("Channel Details", items);
+    };
+    getChannelDetails();
+  }, [channelId]);
   useEffect(() => {
     if (liveBroadcastContent == "LIVE") setIsLive(true);
   }, []);
@@ -74,9 +99,9 @@ const VideoContainer = ({
       </Link>
       <div className="flex gap-2">
         <Link to={`/`} className="flex-shrink-0 relative h-fit">
-          {thumbnails.default && thumbnails.default.url ? (
+          {channelThumbnail && channelThumbnail.url ? (
             <img
-              src={thumbnails.default.url}
+              src={channelThumbnail.url}
               title={channelTitle}
               className={`${
                 isLive ? "ring-2 ring-red-600" : ""

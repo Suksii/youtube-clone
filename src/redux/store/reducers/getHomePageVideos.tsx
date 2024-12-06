@@ -13,7 +13,6 @@ export const getHomePageVideos = createAsyncThunk(
           type: "video",
         },
       });
-      console.log(data);
       return data.items;
     } catch (error) {
       return rejectWithValue("Failed to fetch videos");

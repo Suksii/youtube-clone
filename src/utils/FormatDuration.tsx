@@ -1,4 +1,4 @@
-import moment, { Moment } from "moment";
+import moment from "moment";
 
 // export const FormatDuration = (duration: number): string => {
 //   const hours = Math.floor(duration / 3600);
