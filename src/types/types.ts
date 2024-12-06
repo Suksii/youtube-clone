@@ -6,9 +6,6 @@ export type SidebarContextProps = {
   children: ReactNode;
 };
 
-export type CategoriesProps = {
-  categories: string[];
-};
 
 export type VideoProps = {
   videoId: string;

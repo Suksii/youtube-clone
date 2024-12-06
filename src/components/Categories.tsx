@@ -2,26 +2,36 @@ import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
 import KeyboardArrowLeftOutlinedIcon from "@mui/icons-material/KeyboardArrowLeftOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
-import { CategoriesProps } from "../types/types";
+import { useAppDispatch } from "../redux/hooks";
+import { getVideosByCategory } from "../redux/store/reducers/getHomePageVideos";
 
-const Categories = ({ categories }: CategoriesProps) => {
-  const categoryData = [
+const Categories = () => {
+  const categories = [
     "All",
     "Typescript",
     "Javascript",
     "Programming",
     "React",
+    "Vue",
     "Next.js",
     "Object Oriented Programming",
     "Web development",
     "Coding",
+    "Chess",
   ];
 
   const [translate, setTranslate] = useState(0);
-  const [selectedCategory, setSelectedCategory] = useState(categoryData[0]);
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   const [isLeftArrowVisible, setIsLeftArrowVisible] = useState(false);
   const [isRightArrowVisible, setIsRightArrowVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const dispatch = useAppDispatch();
+
+  const handleCategories = (category: string) => {
+    dispatch(getVideosByCategory(category));
+    setSelectedCategory(category);
+  };
 
   useEffect(() => {
     if (containerRef.current === null) return;
@@ -55,7 +65,7 @@ const Categories = ({ categories }: CategoriesProps) => {
               title={category}
               variant={selectedCategory === category ? "dark" : "default"}
               key={category}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => handleCategories(category)}
             >
               {category}
             </Button>

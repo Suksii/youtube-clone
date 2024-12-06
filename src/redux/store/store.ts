@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import youtubeReducer from "./slices/videosSlice";
+import homePageVideosReducer from "./slices/videosSlice";
 
 export const store = configureStore({
   reducer: {
-    youtubeClone: youtubeReducer,
+    homePageVideosSlice: homePageVideosReducer,
   },
 });
 

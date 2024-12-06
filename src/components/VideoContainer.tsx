@@ -42,7 +42,6 @@ const VideoContainer = ({
         },
       });
       setChannelThumbnail(items[0].snippet.thumbnails.default);
-      console.log("Channel Details", items);
     };
     getChannelDetails();
   }, [channelId]);
