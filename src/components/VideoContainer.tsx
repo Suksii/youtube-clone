@@ -83,7 +83,7 @@ const VideoContainer = ({
         )}
         {!isLive && (
           <div className="absolute bottom-1 right-1 font-semibold bg-secondary-dark text-secondary text-sm py-0.5 px-1 rounded-md">
-            {FormatDuration(duration)}
+            {duration && FormatDuration(duration)}
           </div>
         )}
         <video
@@ -131,13 +131,13 @@ const VideoContainer = ({
           </Link>
           <div
             className="text-secondary-text text-sm leading-3"
-            title={`${FormatView(viewCount)} views • ${format(publishedAt)}`}
+            title={`${viewCount && FormatView(viewCount)} views • ${format(publishedAt)}`}
           >
             {isLive ? (
-              <span>{FormatView(viewCount)} watching</span>
+              <span>{viewCount && FormatView(viewCount)} watching</span>
             ) : (
               <span>
-                {FormatView(viewCount)} views • {format(publishedAt)}
+                {viewCount && FormatView(viewCount)} views • {format(publishedAt)}
               </span>
             )}
           </div>

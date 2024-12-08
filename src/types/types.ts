@@ -6,7 +6,6 @@ export type SidebarContextProps = {
   children: ReactNode;
 };
 
-
 export type VideoProps = {
   videoId: string;
   title: string;
@@ -20,7 +19,7 @@ export type VideoProps = {
   channelThumbnail?: { url: string };
   liveBroadcastContent: string;
   publishedAt: string;
-  viewCount: string;
+  viewCount: string | undefined;
   duration: string;
 };
 
@@ -42,7 +41,7 @@ export type Video = {
     liveBroadcastContent: string;
   };
   statistics: {
-    viewCount: string;
+    viewCount: string | undefined;
   };
   contentDetails: {
     duration: string;
