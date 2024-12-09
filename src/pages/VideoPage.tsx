@@ -60,7 +60,15 @@ const VideoPage = () => {
           </h2>
           <div className="flex flex-col md:flex-row gap-2 md:justify-between md:items-center">
             <div className="flex gap-2 items-center">
-              <div className="w-12 h-12 rounded-full flex-shrink-0 bg-green-300" />
+              {channel?.snippet.thumbnails ? (
+                <img
+                  src={channel?.snippet.thumbnails.default.url}
+                  alt={video?.snippet.channelTitle}
+                  className="w-12 h-12 rounded-full flex-shrink-0"
+                />
+              ) : (
+                <div className="w-12 h-12 rounded-full flex-shrink-0 bg-gray-300"></div>
+              )}
               <div className="flex flex-col gap-1 w-full">
                 <Link to={``} className="w-fit font-semibold leading-3">
                   {video?.snippet.channelTitle}
@@ -70,7 +78,7 @@ const VideoPage = () => {
                   />
                 </Link>
                 <div className="text-secondary-text text-[12.5px] leading-3">
-                  1.3M subscribers
+                  {`${FormatView(channel?.statistics?.subscriberCount)} subscribers`}
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Video, RelatedVideos } from "../../../types/types";
+import { Video, RelatedVideos, Channel } from "../../../types/types";
 import {
   getChannelDetails,
   getHomePageVideos,
@@ -9,6 +9,7 @@ import {
 
 type InitialState = {
   videos: Video[];
+  channel: Channel | null;
   video: Video | null;
   searchTerm: string;
   searchResults: Video[];
@@ -21,6 +22,7 @@ type InitialState = {
 const initialState: InitialState = {
   videos: [],
   video: null,
+  channel: null,
   searchTerm: "All",
   searchResults: [],
   nextPageToken: null,
@@ -94,8 +96,16 @@ const homePageVideosSlice = createSlice({
         state.error = action.error.message;
       })
       .addCase(getChannelDetails.pending, (state) => {
-        state.loading = true
+        state.loading = true;
       })
+      .addCase(getChannelDetails.fulfilled, (state, action) => {
+        state.loading = false;
+        state.channel = action.payload;
+      })
+      .addCase(getChannelDetails.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 
