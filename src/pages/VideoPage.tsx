@@ -10,6 +10,8 @@ import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import Comments from "../components/Comments";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { getVideoById } from "../redux/store/reducers/getHomePageVideos";
+import { FormatView } from "../utils/FormatView";
+import { format, TDate } from "timeago.js";
 
 const VideoPage = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -23,13 +25,10 @@ const VideoPage = () => {
     }
   }, [dispatch, id]);
 
-  useEffect(() => {
-    console.log("Video Page:", video);
-  }, []);
-
   const maxChars: number = 300;
-  const description: string =
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+  const description: string = video?.snippet.description
+    ? video.snippet.description
+    : "";
 
   const truncatedText: string =
     description.length > maxChars && !isExpanded
@@ -60,7 +59,7 @@ const VideoPage = () => {
                   />
                 </Link>
                 <div className="text-secondary-text text-[12.5px] leading-3">
-                  {video?.snippet.liveBroadcastContent}
+                  1.3M subscribers
                 </div>
               </div>
             </div>
@@ -68,7 +67,7 @@ const VideoPage = () => {
               <div className="flex items-center bg-secondary rounded-full">
                 <div className="flex  gap-2 hover:bg-secondary-hover py-1.5 px-3 rounded-l-full cursor-pointer font-semibold">
                   <ThumbUpAltOutlinedIcon />
-                  <p>1K</p>
+                  <p>{FormatView(video?.statistics.likeCount)}</p>
                 </div>
                 <div className="border-l border-x-secondary-border h-6" />
                 <div className="hover:bg-secondary-hover py-1.5 px-4 rounded-r-full cursor-pointer">
@@ -91,8 +90,13 @@ const VideoPage = () => {
 
           <div className="bg-secondary w-full h-fit rounded-lg p-2 leading-5">
             <div className="flex gap-2 items-center">
-              <h3 className="font-semibold">226K views 1 day ago</h3>
-              <p className="text-secondary-text">#hashtag</p>
+              <h3 className="font-semibold">{`${FormatView(
+                video?.statistics.viewCount
+              )}  • ${
+                video?.snippet.publishedAt &&
+                format(video?.snippet?.publishedAt)
+              }`}</h3>
+              <p className="text-secondary-text">#hashags</p>
             </div>
             <div className={isExpanded ? "" : ""}>
               <div className="w-full relative">
