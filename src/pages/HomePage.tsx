@@ -13,6 +13,10 @@ const HomePage = () => {
     dispatch(getHomePageVideos(null));
   }, [dispatch]);
 
+  useEffect(() => {
+    console.log("Home Page videos", videos);
+  });
+
   return (
     <div className="grid grid-cols-[auto,1fr] flex-grow overflow-auto">
       <Sidebar />

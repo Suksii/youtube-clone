@@ -2,11 +2,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Video, RelatedVideos } from "../../../types/types";
 import {
   getHomePageVideos,
+  getVideoById,
   getVideosByCategory,
 } from "../reducers/getHomePageVideos";
 
 type InitialState = {
   videos: Video[];
+  video: Video | null;
   searchTerm: string;
   searchResults: Video[];
   nextPageToken?: string | null | undefined;
@@ -17,6 +19,7 @@ type InitialState = {
 
 const initialState: InitialState = {
   videos: [],
+  video: null,
   searchTerm: "All",
   searchResults: [],
   nextPageToken: null,
@@ -74,7 +77,21 @@ const homePageVideosSlice = createSlice({
           state.searchResults = action.payload.items;
           state.searchTerm = action.payload.searchTerm;
         }
-      );
+      )
+      .addCase(getVideoById.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(
+        getVideoById.fulfilled,
+        (state, action: PayloadAction<Video>) => {
+          state.loading = false;
+          state.video = action.payload;
+        }
+      )
+      .addCase(getVideoById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 

@@ -1,20 +1,31 @@
 import Title from "../components/Title";
 import RelatedVideos from "../components/RelatedVideos";
 import { Link, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ThumbUpAltOutlinedIcon from "@mui/icons-material/ThumbUpAltOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
 import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import TurnedInNotOutlinedIcon from "@mui/icons-material/TurnedInNotOutlined";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import Comments from "../components/Comments";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { getVideoById } from "../redux/store/reducers/getHomePageVideos";
 
 const VideoPage = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const { id } = useParams();
   const dispatch = useAppDispatch();
+  const { video } = useAppSelector((state) => state.homePageVideosSlice);
 
+  useEffect(() => {
+    if (id) {
+      dispatch(getVideoById(id));
+    }
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    console.log("Video Page:", video);
+  }, []);
 
   const maxChars: number = 300;
   const description: string =
@@ -35,21 +46,21 @@ const VideoPage = () => {
             className="rounded-xl w-full h-full aspect-video"
           ></iframe>
           <h2 className="text-xl font-bold line-clamp-2 pb-2">
-            How To Handle Permissions Like A Senior Dev
+            {video?.snippet.title}
           </h2>
           <div className="flex flex-col md:flex-row gap-2 md:justify-between md:items-center">
             <div className="flex gap-2 items-center">
               <div className="w-12 h-12 rounded-full flex-shrink-0 bg-green-300" />
               <div className="flex flex-col gap-1 w-full">
                 <Link to={``} className="w-fit font-semibold leading-3">
-                  Channel Name
+                  {video?.snippet.channelTitle}
                   <Title
-                    title={"Channel Name"}
+                    title={video?.snippet.channelTitle}
                     titlePosition="bottom-full left-1/2 -translate-x-1/2 mb-4"
                   />
                 </Link>
                 <div className="text-secondary-text text-[12.5px] leading-3">
-                  1.33M subscribers
+                  {video?.snippet.liveBroadcastContent}
                 </div>
               </div>
             </div>

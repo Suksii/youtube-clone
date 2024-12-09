@@ -19,7 +19,7 @@ export type VideoProps = {
   channelThumbnail?: { url: string };
   liveBroadcastContent: string;
   publishedAt: string;
-  viewCount: string | undefined;
+  viewCount?: string;
   duration: string;
 };
 
@@ -41,7 +41,8 @@ export type Video = {
     liveBroadcastContent: string;
   };
   statistics: {
-    viewCount: string | undefined;
+    viewCount: string;
+    likeCount: string;
   };
   contentDetails: {
     duration: string;
@@ -66,7 +67,7 @@ export type LargeSidebarProps = {
 };
 
 export type TitleProps = {
-  title: string;
+  title: string | undefined;
   titlePosition?: string;
 };
 

@@ -44,8 +44,30 @@ export const getVideosByCategory = createAsyncThunk(
       };
     } catch (error: any) {
       return rejectWithValue(
-        error?.response?.data?.message || error?.message || "Failed to fetch videos"
+        error?.response?.data?.message ||
+          error?.message ||
+          "Failed to fetch videos"
       );
+    }
+  }
+);
+
+export const getVideoById = createAsyncThunk(
+  "youtubeClone/videoById",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const { data } = await request.get("/videos", {
+        params: {
+          part: "snippet, statistics",
+          id: id,
+        },
+      });
+      console.log(data.items[0]);
+
+      return data.items[0];
+    } catch (error: any) {
+      console.log(error);
+      return rejectWithValue(error?.response?.data?.message);
     }
   }
 );
