@@ -1,6 +1,7 @@
 import { VariantProps } from "class-variance-authority";
 import { ComponentProps, ReactNode } from "react";
 import { buttonStyles } from "../components/Button";
+import { TDate } from "timeago.js";
 
 export type SidebarContextProps = {
   children: ReactNode;
@@ -37,12 +38,36 @@ export type Video = {
       medium: { url: string };
       default: { url: string };
     };
-    publishedAt: string;
+    publishedAt: TDate | string | undefined;
     liveBroadcastContent: string;
   };
   statistics: {
     viewCount: string;
-    likeCount: string;
+    likeCount: string | undefined;
+  };
+  contentDetails: {
+    duration: string;
+  };
+};
+
+export type Channel = {
+  id: string;
+  etag: string;
+  snippet: {
+    title: string;
+    description: string;
+    thumbnails: {
+      high: { url: string };
+      medium: { url: string };
+      default: { url: string };
+    };
+    publishedAt: TDate | string | undefined;
+    liveBroadcastContent: string;
+  };
+  statistics: {
+    viewCount: string;
+    subscriberCount: string | undefined;
+    videoCount: string | undefined;
   };
   contentDetails: {
     duration: string;

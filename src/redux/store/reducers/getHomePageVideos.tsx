@@ -71,3 +71,22 @@ export const getVideoById = createAsyncThunk(
     }
   }
 );
+
+export const getChannelDetails = createAsyncThunk(
+  "youtubeClone/channelDetails",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const { data } = await request.get("/channels", {
+        params: {
+          part: "snippet, statistics, contentDetails",
+          id: id,
+        },
+      });
+      console.log(data.items[0]);
+
+      return data.items[0];
+    } catch (error: any) {
+      return rejectWithValue(error?.response?.data?.message);
+    }
+  }
+);

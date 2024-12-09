@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Video, RelatedVideos } from "../../../types/types";
 import {
+  getChannelDetails,
   getHomePageVideos,
   getVideoById,
   getVideosByCategory,
@@ -91,7 +92,10 @@ const homePageVideosSlice = createSlice({
       .addCase(getVideoById.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      });
+      })
+      .addCase(getChannelDetails.pending, (state) => {
+        state.loading = true
+      })
   },
 });
 

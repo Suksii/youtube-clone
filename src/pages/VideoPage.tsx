@@ -9,21 +9,32 @@ import TurnedInNotOutlinedIcon from "@mui/icons-material/TurnedInNotOutlined";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import Comments from "../components/Comments";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { getVideoById } from "../redux/store/reducers/getHomePageVideos";
+import {
+  getChannelDetails,
+  getVideoById,
+} from "../redux/store/reducers/getHomePageVideos";
 import { FormatView } from "../utils/FormatView";
-import { format, TDate } from "timeago.js";
+import { format } from "timeago.js";
 
 const VideoPage = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
   const { video } = useAppSelector((state) => state.homePageVideosSlice);
+  const channelId: string | undefined = video?.snippet.channelId;
+  const { channel } = useAppSelector((state) => state.homePageVideosSlice);
 
   useEffect(() => {
     if (id) {
       dispatch(getVideoById(id));
     }
   }, [dispatch, id]);
+
+  useEffect(() => {
+    if (channelId) {
+      dispatch(getChannelDetails(channelId));
+    }
+  }, [dispatch, channelId]);
 
   const maxChars: number = 300;
   const description: string = video?.snippet.description
