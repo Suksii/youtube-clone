@@ -11,6 +11,7 @@ import Comments from "../components/Comments";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import {
   getChannelDetails,
+  getComments,
   getVideoById,
 } from "../redux/store/reducers/getHomePageVideos";
 import { FormatView } from "../utils/FormatView";
@@ -23,6 +24,7 @@ const VideoPage = () => {
   const { video } = useAppSelector((state) => state.homePageVideosSlice);
   const channelId: string | undefined = video?.snippet.channelId;
   const { channel } = useAppSelector((state) => state.homePageVideosSlice);
+  const { comments } = useAppSelector((state) => state.homePageVideosSlice);
 
   useEffect(() => {
     if (id) {
@@ -35,6 +37,12 @@ const VideoPage = () => {
       dispatch(getChannelDetails(channelId));
     }
   }, [dispatch, channelId]);
+
+  useEffect(() => {
+    if (id) {
+      dispatch(getComments(id));
+    }
+  }, [dispatch, id]);
 
   const maxChars: number = 300;
   const description: string = video?.snippet.description
@@ -78,7 +86,9 @@ const VideoPage = () => {
                   />
                 </Link>
                 <div className="text-secondary-text text-[12.5px] leading-3">
-                  {`${FormatView(channel?.statistics?.subscriberCount)} subscribers`}
+                  {`${FormatView(
+                    channel?.statistics?.subscriberCount
+                  )} subscribers`}
                 </div>
               </div>
             </div>
@@ -109,15 +119,23 @@ const VideoPage = () => {
 
           <div className="bg-secondary w-full h-fit rounded-lg p-2 leading-5">
             <div className="flex gap-2 items-center">
-              <h3 className="font-semibold">{`${FormatView(
+              <h3 className="font-semibold text-[14px]">{`${FormatView(
                 video?.statistics.viewCount
               )}  • ${
                 video?.snippet.publishedAt &&
                 format(video?.snippet?.publishedAt)
               }`}</h3>
-              <p className="text-secondary-text">#hashags</p>
+              <p
+                className={`${
+                  isExpanded ? "text-blue-700" : "text-secondary-text"
+                } text-[14px] font-semibold flex flex-wrap gap-2`}
+              >
+                {video?.snippet?.tags.slice(0, 7).map((tag) => (
+                  <span>#{tag}</span>
+                ))}
+              </p>
             </div>
-            <div className={isExpanded ? "" : ""}>
+            <div>
               <div className="w-full relative">
                 {truncatedText}
                 {description.length > maxChars && !isExpanded && (
@@ -145,7 +163,6 @@ const VideoPage = () => {
           </div>
           <Comments />
         </div>
-
         <div style={{ flex: 1 }}>
           <RelatedVideos />
         </div>

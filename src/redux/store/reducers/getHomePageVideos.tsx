@@ -90,3 +90,20 @@ export const getChannelDetails = createAsyncThunk(
     }
   }
 );
+
+export const getComments = createAsyncThunk(
+  "youtubeClone/comments",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const { data } = await request.get("/commentThreads", {
+        params: {
+          part: "snippet",
+          videoId: id,
+        },
+      });
+      return data.items[0];
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
