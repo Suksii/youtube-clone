@@ -56,6 +56,7 @@ export type CommentsProps = {
   authorDisplayName: string;
   authorProfileImageUrl: string;
   authorChannelUrl: string;
+  commentedAt: string;
 };
 
 export type Comments = {

@@ -25,7 +25,7 @@ const Comments = ({ videoId }: { videoId?: string }) => {
   };
 
   const topComments = comments?.map(
-    (comment) => comment?.snippet?.topLevelComment?.snippet
+    (comment) => comment?.snippet?.topLevelComment
   );
 
   return (
@@ -82,10 +82,11 @@ const Comments = ({ videoId }: { videoId?: string }) => {
         {topComments?.map((comment, index) => (
           <Comment
             key={index}
-            textDisplay={comment.textDisplay}
-            authorDisplayName={comment.authorDisplayName}
-            authorProfileImageUrl={comment.authorProfileImageUrl}
-            authorChannelUrl={comment.authorChannelUrl}
+            textDisplay={comment.snippet.textDisplay}
+            authorDisplayName={comment.snippet.authorDisplayName}
+            authorProfileImageUrl={comment.snippet.authorProfileImageUrl}
+            authorChannelUrl={comment.snippet.authorChannelUrl}
+            commentedAt={comment.publishedAt}
           />
         ))}
       </div>
