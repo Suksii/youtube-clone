@@ -62,7 +62,6 @@ export const getVideoById = createAsyncThunk(
           id: id,
         },
       });
-      console.log(data.items[0]);
 
       return data.items[0];
     } catch (error: any) {
@@ -101,7 +100,7 @@ export const getComments = createAsyncThunk(
           videoId: id,
         },
       });
-      return data.items[0];
+      return data.items;
     } catch (error) {
       return rejectWithValue(error);
     }

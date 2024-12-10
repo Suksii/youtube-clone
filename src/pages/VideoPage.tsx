@@ -11,7 +11,6 @@ import Comments from "../components/Comments";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import {
   getChannelDetails,
-  getComments,
   getVideoById,
 } from "../redux/store/reducers/getHomePageVideos";
 import { FormatView } from "../utils/FormatView";
@@ -24,7 +23,6 @@ const VideoPage = () => {
   const { video } = useAppSelector((state) => state.homePageVideosSlice);
   const channelId: string | undefined = video?.snippet.channelId;
   const { channel } = useAppSelector((state) => state.homePageVideosSlice);
-  const { comments } = useAppSelector((state) => state.homePageVideosSlice);
 
   useEffect(() => {
     if (id) {
@@ -37,12 +35,6 @@ const VideoPage = () => {
       dispatch(getChannelDetails(channelId));
     }
   }, [dispatch, channelId]);
-
-  useEffect(() => {
-    if (id) {
-      dispatch(getComments(id));
-    }
-  }, [dispatch, id]);
 
   const maxChars: number = 300;
   const description: string = video?.snippet.description
@@ -130,8 +122,8 @@ const VideoPage = () => {
                   isExpanded ? "text-blue-700" : "text-secondary-text"
                 } text-[14px] font-semibold flex flex-wrap gap-2`}
               >
-                {video?.snippet?.tags.slice(0, 7).map((tag) => (
-                  <span>#{tag}</span>
+                {video?.snippet?.tags?.slice(0, 7).map((tag) => (
+                  <span key={tag}>#{tag}</span>
                 ))}
               </p>
             </div>
@@ -161,7 +153,7 @@ const VideoPage = () => {
               )}
             </div>
           </div>
-          <Comments />
+          <Comments videoId={id} />
         </div>
         <div style={{ flex: 1 }}>
           <RelatedVideos />

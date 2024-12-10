@@ -39,6 +39,7 @@ export type Video = {
       default: { url: string };
     };
     publishedAt: string;
+    tags: [];
     liveBroadcastContent: string;
   };
   statistics: {
@@ -47,6 +48,28 @@ export type Video = {
   };
   contentDetails: {
     duration: string;
+  };
+};
+
+export type CommentsProps = {
+  textDisplay: string;
+  authorDisplayName: string;
+  authorProfileImageUrl: string;
+  authorChannelUrl: string;
+};
+
+export type Comments = {
+  snippet: {
+    topLevelComment: {
+      snippet: {
+        textDisplay: string;
+        authorDisplayName: string;
+        authorProfileImageUrl: string;
+        authorChannelUrl: string;
+      };
+      publishedAt: string;
+      likeCount: number;
+    };
   };
 };
 

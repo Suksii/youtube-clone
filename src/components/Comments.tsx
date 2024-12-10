@@ -1,18 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SortOutlinedIcon from "@mui/icons-material/SortOutlined";
 import SentimentVerySatisfiedOutlinedIcon from "@mui/icons-material/SentimentVerySatisfiedOutlined";
 import Button from "./Button";
 import Comment from "./Comment";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { getComments } from "../redux/store/reducers/getHomePageVideos";
 
-const Comments = () => {
-  const [isExpanded, setIsExpanded] = useState<boolean>(false);
+const Comments = ({ videoId }: { videoId?: string }) => {
+  // const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [isShown, setIsShown] = useState<boolean>(false);
   const [value, setValue] = useState<string>("");
+  const dispatch = useAppDispatch();
+
+  const { comments } = useAppSelector((state) => state.homePageVideosSlice);
+  useEffect(() => {
+    if (videoId) {
+      dispatch(getComments(videoId));
+    }
+  }, [dispatch, videoId]);
 
   const handleCancel = () => {
     setValue("");
     setIsShown(false);
   };
+
+  const topComments = comments?.map(
+    (comment) => comment?.snippet?.topLevelComment?.snippet
+  );
 
   return (
     <div className="flex flex-col gap-6">
@@ -65,8 +79,14 @@ const Comments = () => {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        {[...Array(4)].map((_, index) => (
-          <Comment key={index} />
+        {topComments?.map((comment, index) => (
+          <Comment
+            key={index}
+            textDisplay={comment.textDisplay}
+            authorDisplayName={comment.authorDisplayName}
+            authorProfileImageUrl={comment.authorProfileImageUrl}
+            authorChannelUrl={comment.authorChannelUrl}
+          />
         ))}
       </div>
     </div>
