@@ -4,6 +4,7 @@ import VideoContainer from "../components/VideoContainer";
 import { useEffect } from "react";
 import { getHomePageVideos } from "../redux/store/reducers/getHomePageVideos";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { format } from "timeago.js";
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
@@ -27,6 +28,8 @@ const HomePage = () => {
         {videos && videos.length > 0 ? (
           <div className="gap-4 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] z-10 py-6">
             {videos.map((video) => {
+              console.log(format(video.snippet.publishedAt));
+
               return (
                 <VideoContainer
                   key={video.id || video.etag}
@@ -36,9 +39,13 @@ const HomePage = () => {
                   channelId={video.snippet.channelId}
                   thumbnails={video.snippet.thumbnails}
                   liveBroadcastContent={video.snippet.liveBroadcastContent}
-                  viewCount={video.statistics?.viewCount}
+                  viewCount={
+                    video.statistics.viewCount && video.statistics?.viewCount
+                  }
                   duration={video.contentDetails?.duration}
-                  publishedAt={video.snippet.publishedAt}
+                  publishedAt={
+                    video.snippet.publishedAt && video.snippet?.publishedAt
+                  }
                 />
               );
             })}

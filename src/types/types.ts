@@ -38,7 +38,7 @@ export type Video = {
       medium: { url: string };
       default: { url: string };
     };
-    publishedAt: TDate | string | undefined;
+    publishedAt: string;
     liveBroadcastContent: string;
   };
   statistics: {
