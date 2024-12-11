@@ -122,3 +122,22 @@ export const getRelatedVideos = createAsyncThunk(
     }
   }
 );
+
+export const getSearchedVideos = createAsyncThunk(
+  "youtubeClone/searchedVideos",
+  async (searchTerm: string, { rejectWithValue }) => {
+    try {
+      const { data } = await request.get("/search", {
+        params: {
+          part: "snippet",
+          q: searchTerm,
+          maxResults: 20,
+          type: "video, channel",
+        },
+      });
+      return data.items;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

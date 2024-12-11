@@ -41,20 +41,10 @@ const SearchPage = () => {
     },
   ];
 
-  const categories: string[] = [
-    "All",
-    "Shorts",
-    "Videos",
-    "Unwatched",
-    "Watched",
-    "Recently uploaded",
-    "Live",
-  ];
-
   return (
     <div className="flex flex-col gap-5 px-6 w-full items-center">
       <div className="flex justify-between gap-2 items-center w-full max-w-screen-xl">
-        <Categories categories={categories} />
+        <Categories />
         <Button
           variant="ghost"
           className="flex gap-1 rounded-full px-4 py-2 relative group"

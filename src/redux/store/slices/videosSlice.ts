@@ -5,6 +5,7 @@ import {
   getComments,
   getHomePageVideos,
   getRelatedVideos,
+  getSearchedVideos,
   getVideoById,
   getVideosByCategory,
 } from "../reducers/getHomePageVideos";
@@ -129,6 +130,24 @@ const homePageVideosSlice = createSlice({
         state.relatedVideos = action.payload;
       })
       .addCase(getRelatedVideos.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getSearchedVideos.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(
+        getSearchedVideos.fulfilled,
+        (
+          state,
+          action: PayloadAction<{ items: Video[]; searchTerm: string }>
+        ) => {
+          state.loading = false;
+          state.videos = action.payload.items;
+          state.searchTerm = action.payload.searchTerm;
+        }
+      )
+      .addCase(getSearchedVideos.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
