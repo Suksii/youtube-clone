@@ -55,7 +55,7 @@ const VideoPage = () => {
             allowFullScreen
             className="rounded-xl w-full h-full aspect-video"
           ></iframe>
-          <h2 className="text-xl font-bold line-clamp-2 pb-2">
+          <h2 className="text-xl font-bold pb-2">
             {video?.snippet.title}
           </h2>
           <div className="flex flex-col md:flex-row gap-2 md:justify-between md:items-center">
@@ -153,10 +153,10 @@ const VideoPage = () => {
               )}
             </div>
           </div>
-          <Comments videoId={id} />
+          <Comments videoId={id} commentCount={video?.statistics?.commentCount}/>
         </div>
         <div style={{ flex: 1 }}>
-          <RelatedVideos />
+          <RelatedVideos relatedToVideoId={id}/>
         </div>
       </div>
     </div>

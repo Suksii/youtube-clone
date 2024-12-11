@@ -45,6 +45,7 @@ export type Video = {
   statistics: {
     viewCount: string;
     likeCount: string | undefined;
+    commentCount: string;
   };
   contentDetails: {
     duration: string;
@@ -56,7 +57,7 @@ export type CommentsProps = {
   authorDisplayName: string;
   authorProfileImageUrl: string;
   authorChannelUrl: string;
-  commentedAt: string;
+  publishedAt: string;
 };
 
 export type Comments = {
@@ -67,9 +68,9 @@ export type Comments = {
         authorDisplayName: string;
         authorProfileImageUrl: string;
         authorChannelUrl: string;
+        publishedAt: string;
+        likeCount: number;
       };
-      publishedAt: string;
-      likeCount: number;
     };
   };
 };

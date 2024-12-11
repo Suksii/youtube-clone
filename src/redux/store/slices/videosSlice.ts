@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Video, RelatedVideos, Channel, Comments } from "../../../types/types";
+import { Video, Channel, Comments } from "../../../types/types";
 import {
   getChannelDetails,
   getComments,
   getHomePageVideos,
+  getRelatedVideos,
   getVideoById,
   getVideosByCategory,
 } from "../reducers/getHomePageVideos";
@@ -18,7 +19,7 @@ type InitialState = {
   nextPageToken?: string | null | undefined;
   loading: boolean;
   error: string | null | undefined;
-  relatedVideos: RelatedVideos[];
+  relatedVideos: any[];
 };
 
 const initialState: InitialState = {
@@ -117,6 +118,17 @@ const homePageVideosSlice = createSlice({
         state.comments = action.payload;
       })
       .addCase(getComments.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getRelatedVideos.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getRelatedVideos.fulfilled, (state, action) => {
+        state.loading = false;
+        state.relatedVideos = action.payload;
+      })
+      .addCase(getRelatedVideos.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

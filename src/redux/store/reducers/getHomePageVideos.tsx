@@ -81,8 +81,6 @@ export const getChannelDetails = createAsyncThunk(
           id: id,
         },
       });
-      console.log(data.items[0]);
-
       return data.items[0];
     } catch (error: any) {
       return rejectWithValue(error?.response?.data?.message);
@@ -98,6 +96,24 @@ export const getComments = createAsyncThunk(
         params: {
           part: "snippet",
           videoId: id,
+        },
+      });
+      return data.items;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getRelatedVideos = createAsyncThunk(
+  "youtubeClone/relatedVideos",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const { data } = await request.get("/search", {
+        params: {
+          part: "snippet",
+          relatedToVideoId: id,
+          type: "video",
         },
       });
       return data.items;

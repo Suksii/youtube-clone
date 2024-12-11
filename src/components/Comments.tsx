@@ -6,7 +6,13 @@ import Comment from "./Comment";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { getComments } from "../redux/store/reducers/getHomePageVideos";
 
-const Comments = ({ videoId }: { videoId?: string }) => {
+const Comments = ({
+  videoId,
+  commentCount,
+}: {
+  videoId?: string;
+  commentCount?: string;
+}) => {
   // const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [isShown, setIsShown] = useState<boolean>(false);
   const [value, setValue] = useState<string>("");
@@ -25,13 +31,13 @@ const Comments = ({ videoId }: { videoId?: string }) => {
   };
 
   const topComments = comments?.map(
-    (comment) => comment?.snippet?.topLevelComment
+    (comment) => comment?.snippet?.topLevelComment.snippet
   );
 
   return (
     <div className="flex flex-col gap-6">
       <div className="flex gap-8">
-        <p className="text-xl font-bold">54 Comments</p>
+        <p className="text-xl font-bold">{commentCount || "0"} comments</p>
         <div className="flex items-center gap-2">
           <SortOutlinedIcon />
           <p className="font-semibold text-sm">Sort by</p>
@@ -79,16 +85,18 @@ const Comments = ({ videoId }: { videoId?: string }) => {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        {topComments?.map((comment, index) => (
-          <Comment
-            key={index}
-            textDisplay={comment.snippet.textDisplay}
-            authorDisplayName={comment.snippet.authorDisplayName}
-            authorProfileImageUrl={comment.snippet.authorProfileImageUrl}
-            authorChannelUrl={comment.snippet.authorChannelUrl}
-            commentedAt={comment.publishedAt}
-          />
-        ))}
+        {topComments?.map((comment, index) => {
+          return (
+            <Comment
+              key={index}
+              textDisplay={comment.textDisplay}
+              authorDisplayName={comment.authorDisplayName}
+              authorProfileImageUrl={comment.authorProfileImageUrl}
+              authorChannelUrl={comment.authorChannelUrl}
+              publishedAt={comment.publishedAt}
+            />
+          );
+        })}
       </div>
     </div>
   );

@@ -4,8 +4,22 @@ import { useEffect, useState } from "react";
 import thumb1 from "../assets/thumb1.jpg";
 import thumb2 from "../assets/thumb2.jpg";
 import thumb3 from "../assets/thumb3.jpg";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { getRelatedVideos } from "../redux/store/reducers/getHomePageVideos";
 
-const RelatedVideos = () => {
+const RelatedVideos = ({ relatedToVideoId }: { relatedToVideoId?: string }) => {
+  const dispatch = useAppDispatch();
+  const { relatedVideos } = useAppSelector(
+    (state) => state.homePageVideosSlice
+  );
+  useEffect(() => {
+    if (relatedToVideoId) {
+      dispatch(getRelatedVideos(relatedToVideoId));
+    }
+  }, [dispatch, relatedToVideoId]);
+
+  console.log("Related Videos: ", relatedVideos);
+
   type RelatedVideosType = {
     videoUrl: string;
     videoTitle: string;
@@ -13,8 +27,7 @@ const RelatedVideos = () => {
     channelName: string;
     views: number;
   };
-
-  const relatedVideos: RelatedVideosType[] = [
+  const relatedVideosConst: RelatedVideosType[] = [
     {
       videoUrl:
         "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
@@ -23,7 +36,6 @@ const RelatedVideos = () => {
       thumbnails: [thumb1, thumb2, thumb3],
       views: 123125,
     },
-    // Ostali video zapisi
     {
       videoUrl: "",
       videoTitle: "YouTube video title",
@@ -63,7 +75,7 @@ const RelatedVideos = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      {relatedVideos.map((relatedVideo, index) => (
+      {relatedVideosConst.map((relatedVideo, index) => (
         <div
           className="flex relative gap-2"
           key={index}
