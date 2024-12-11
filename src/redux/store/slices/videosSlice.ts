@@ -16,11 +16,12 @@ type InitialState = {
   video: Video | null;
   searchTerm: string;
   searchResults: Video[];
+  searchedResults: Video[];
   comments: Comments[] | null;
   nextPageToken?: string | null | undefined;
   loading: boolean;
   error: string | null | undefined;
-  relatedVideos: any[];
+  relatedVideos: Video[];
 };
 
 const initialState: InitialState = {
@@ -29,6 +30,7 @@ const initialState: InitialState = {
   channel: null,
   searchTerm: "All",
   searchResults: [],
+  searchedResults: [],
   nextPageToken: null,
   comments: [],
   loading: false,
@@ -48,6 +50,7 @@ const homePageVideosSlice = createSlice({
     builder
       .addCase(getHomePageVideos.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(
         getHomePageVideos.fulfilled,
@@ -88,6 +91,7 @@ const homePageVideosSlice = createSlice({
       )
       .addCase(getVideoById.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(
         getVideoById.fulfilled,
@@ -102,6 +106,7 @@ const homePageVideosSlice = createSlice({
       })
       .addCase(getChannelDetails.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(getChannelDetails.fulfilled, (state, action) => {
         state.loading = false;
@@ -124,6 +129,7 @@ const homePageVideosSlice = createSlice({
       })
       .addCase(getRelatedVideos.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(getRelatedVideos.fulfilled, (state, action) => {
         state.loading = false;
@@ -135,6 +141,7 @@ const homePageVideosSlice = createSlice({
       })
       .addCase(getSearchedVideos.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(
         getSearchedVideos.fulfilled,
@@ -143,7 +150,7 @@ const homePageVideosSlice = createSlice({
           action: PayloadAction<{ items: Video[]; searchTerm: string }>
         ) => {
           state.loading = false;
-          state.videos = action.payload.items;
+          state.searchedResults = action.payload.items;
           state.searchTerm = action.payload.searchTerm;
         }
       )

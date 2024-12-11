@@ -3,8 +3,18 @@ import Button from "../components/Button";
 import Categories from "../components/Categories";
 import TuneIcon from "@mui/icons-material/Tune";
 import Title from "../components/Title";
+import { useAppSelector } from "../redux/hooks";
+import { useEffect } from "react";
 
 const SearchPage = () => {
+  const { searchedResults } = useAppSelector(
+    (state) => state.homePageVideosSlice
+  );
+
+  useEffect(() => {
+    console.log(searchedResults);
+  }, []);
+
   type SearchedVideoType = {
     videoUrl: string;
     videoTitle: string;

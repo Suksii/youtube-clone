@@ -5,12 +5,25 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import Button from "./Button";
 import { useState } from "react";
 import { SearchProps } from "../types/types";
+import { useAppDispatch } from "../redux/hooks";
+import { useNavigate } from "react-router-dom";
+import { getSearchedVideos } from "../redux/store/reducers/getHomePageVideos";
 
 const Search: React.FC<SearchProps> = ({ isFullWidth, setIsFullWidth }) => {
-  const [value, setValue] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleClear = () => {
-    setValue("");
+    setSearchTerm("");
+  };
+
+  const handleSearch = () => {
+    if (searchTerm.trim()) {
+      dispatch(getSearchedVideos(searchTerm));
+
+      navigate(`/results?search_query=${searchTerm}`);
+    }
   };
 
   return (
@@ -31,12 +44,18 @@ const Search: React.FC<SearchProps> = ({ isFullWidth, setIsFullWidth }) => {
         <div className="relative flex flex-grow ">
           <input
             type="search"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full border border-secondary-border h-10 pl-4 pr-8 rounded-l-full focus:border focus:border-blue-600 focus:shadow-[inset_0_4px_4px_-4px_rgba(0,0,0,0.5)] outline-none"
             placeholder="Search"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                handleSearch();
+              }
+            }}
           />
-          {value && (
+          {searchTerm && (
             <Button
               type="button"
               className="absolute right-0 mx-[1px] top-1/2 -translate-y-1/2 text-secondary-text hover:bg-opacity-50 text-[10px]"
@@ -51,6 +70,8 @@ const Search: React.FC<SearchProps> = ({ isFullWidth, setIsFullWidth }) => {
         <Button
           className="relative group py-1 px-4 rounded-r-full border border-l-0 border-secondary-border"
           customTitle="Search"
+          type="button"
+          onClick={handleSearch}
         >
           <SearchIcon />
         </Button>
