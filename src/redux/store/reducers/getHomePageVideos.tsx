@@ -132,7 +132,7 @@ export const getSearchedVideos = createAsyncThunk(
           part: "snippet",
           q: searchTerm,
           maxResults: 20,
-          type: "video, channel",
+          type: "video",
         },
       });
       return data.items;

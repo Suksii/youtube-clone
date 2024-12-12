@@ -143,17 +143,10 @@ const homePageVideosSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(
-        getSearchedVideos.fulfilled,
-        (
-          state,
-          action: PayloadAction<{ items: Video[]; searchTerm: string }>
-        ) => {
-          state.loading = false;
-          state.searchedResults = action.payload.items;
-          state.searchTerm = action.payload.searchTerm;
-        }
-      )
+      .addCase(getSearchedVideos.fulfilled, (state, action: PayloadAction<Video[]>) => {
+        state.loading = false;
+        state.searchedResults = action.payload;
+      })
       .addCase(getSearchedVideos.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;

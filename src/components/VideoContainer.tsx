@@ -22,6 +22,7 @@ const VideoContainer = ({
   viewCount,
   duration,
   publishedAt,
+  isSearchPage
 }: VideoProps) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
   const [isLive, setIsLive] = useState<boolean>(false);
@@ -71,7 +72,7 @@ const VideoContainer = ({
       >
         {thumbnails && thumbnails.high ? (
           <img
-            src={thumbnails.medium.url}
+            src={isSearchPage ? thumbnails.high.url : thumbnails.medium.url}
             className={`${
               isVideoPlaying ? "rounded-0" : "rounded-xl"
             } transition-[border-radius] duration-200 w-full h-full object-cover`}
@@ -81,11 +82,11 @@ const VideoContainer = ({
             No thumbnail
           </div>
         )}
-        {!isLive && (
+        {/* {!isLive && (
           <div className="absolute bottom-1 right-1 font-semibold bg-secondary-dark text-secondary text-sm py-0.5 px-1 rounded-md">
             {duration && FormatDuration(duration)}
           </div>
-        )}
+        )} */}
         <video
           ref={videoRef}
           src={`https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4`}

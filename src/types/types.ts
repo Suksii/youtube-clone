@@ -21,7 +21,8 @@ export type VideoProps = {
   liveBroadcastContent: string;
   publishedAt: string;
   viewCount?: string;
-  duration: string;
+  duration?: string;
+  isSearchPage?: boolean;
 };
 
 export type Video = {
@@ -145,7 +146,7 @@ export type ButtonProps = VariantProps<typeof buttonStyles> &
     titlePosition?: string;
   };
 
-export type RelatedVideos = {
+export type RelatedVideosType = {
   thumbnails: [];
   duration: string;
   title: string;
