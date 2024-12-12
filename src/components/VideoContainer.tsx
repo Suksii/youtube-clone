@@ -6,7 +6,9 @@ import Title from "./Title";
 import { VideoProps } from "../types/types";
 import { Link } from "react-router-dom";
 import { FormatDuration } from "../utils/FormatDuration";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { request } from "../utils/api";
+import Button from "./Button";
 
 type Thumbnail = {
   url?: string;
@@ -20,9 +22,10 @@ const VideoContainer = ({
   thumbnails,
   liveBroadcastContent,
   viewCount,
+  description,
   duration,
   publishedAt,
-  isSearchPage
+  isSearchPage,
 }: VideoProps) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
   const [isLive, setIsLive] = useState<boolean>(false);
@@ -61,20 +64,17 @@ const VideoContainer = ({
 
   return (
     <div
-      className="flex flex-col gap-2"
+      className={`flex ${isSearchPage ? "flex-row" : "flex-col"} gap-2`}
       key={videoId}
       onMouseEnter={() => setIsVideoPlaying(true)}
       onMouseLeave={() => setIsVideoPlaying(false)}
     >
-      <Link
-        to={`/watch/${videoId}`}
-        className="relative aspect-video"
-      >
+      <Link to={`/watch/${videoId}`} className="relative aspect-video">
         {thumbnails && thumbnails.high ? (
           <img
             src={isSearchPage ? thumbnails.high.url : thumbnails.medium.url}
             className={`${
-              isVideoPlaying ? "rounded-0" : "rounded-xl"
+              isVideoPlaying && !isSearchPage ? "rounded-0" : "rounded-xl"
             } transition-[border-radius] duration-200 w-full h-full object-cover`}
           />
         ) : (
@@ -97,51 +97,95 @@ const VideoContainer = ({
           } transition-opacity duration-300`}
         />
       </Link>
-      <div className="flex gap-2">
-        <Link to={`/`} className="flex-shrink-0 relative h-fit">
-          {channelThumbnail && channelThumbnail.url ? (
-            <img
-              src={channelThumbnail.url}
-              title={channelTitle}
-              className={`${
-                isLive ? "ring-2 ring-red-600" : ""
-              } w-12 h-12 rounded-full object-cover`}
-            />
-          ) : (
-            <div className="w-12 h-12 rounded-full bg-green-300" />
-          )}
-          {isLive && (
-            <div className="absolute p-0.5 bg-red-600 text-white  top-full -translate-y-1/2 left-1/2 -translate-x-1/2 rounded-sm">
-              <p className="uppercase text-[10px] font-semibold">Live</p>
-            </div>
-          )}
-        </Link>
+      <div className="flex gap-2 w-full relative">
+        {!isSearchPage && (
+          <Link to={`/`} className="flex-shrink-0 relative h-fit">
+            {channelThumbnail && channelThumbnail.url ? (
+              <img
+                src={channelThumbnail.url}
+                title={channelTitle}
+                className={`${
+                  isLive ? "ring-2 ring-red-600" : ""
+                } w-12 h-12 rounded-full object-cover`}
+              />
+            ) : (
+              <div className="w-12 h-12 rounded-full bg-green-300" />
+            )}
+            {isLive && (
+              <div className="absolute p-0.5 bg-red-600 text-white  top-full -translate-y-1/2 left-1/2 -translate-x-1/2 rounded-sm">
+                <p className="uppercase text-[10px] font-semibold">Live</p>
+              </div>
+            )}
+          </Link>
+        )}
         <div className="flex flex-col gap-1">
           <Link to={``} className="font-bold line-clamp-2" title={title}>
             {title}
           </Link>
-          <Link
-            to={``}
-            className="w-fit text-secondary-text text-sm relative group leading-3"
-          >
-            {channelTitle}
-            <Title
-              title={channelTitle}
-              titlePosition="bottom-full left-1/2 -translate-x-1/2 mb-4"
-            />
-          </Link>
+          {!isSearchPage && (
+            <Link
+              to={``}
+              className="w-fit text-secondary-text text-sm relative group leading-3"
+            >
+              {channelTitle}
+              <Title
+                title={channelTitle}
+                titlePosition="bottom-full left-1/2 -translate-x-1/2 mb-4"
+              />
+            </Link>
+          )}
+          {isSearchPage && (
+            <div className="flex items-center gap-2">
+              <Link to={`/`} className="flex-shrink-0 relative h-fit">
+                {channelThumbnail && channelThumbnail.url ? (
+                  <img
+                    src={channelThumbnail.url}
+                    title={channelTitle}
+                    className={`${
+                      isLive ? "ring-2 ring-red-600" : ""
+                    } w-12 h-12 rounded-full object-cover`}
+                  />
+                ) : (
+                  <div className="w-12 h-12 rounded-full bg-green-300" />
+                )}
+                {isLive && !isSearchPage && (
+                  <div className="absolute p-0.5 bg-red-600 text-white  top-full -translate-y-1/2 left-1/2 -translate-x-1/2 rounded-sm">
+                    <p className="uppercase text-[10px] font-semibold">Live</p>
+                  </div>
+                )}
+              </Link>
+              <Link
+                to={``}
+                className="w-fit text-secondary-text text-sm relative group leading-3"
+              >
+                {channelTitle}
+                <Title
+                  title={channelTitle}
+                  titlePosition="bottom-full left-1/2 -translate-x-1/2 mb-4"
+                />
+              </Link>
+            </div>
+          )}
           <div
             className="text-secondary-text text-sm leading-3"
-            title={`${viewCount && FormatView(viewCount)} views • ${format(publishedAt)}`}
+            title={`${viewCount && FormatView(viewCount)} views • ${format(
+              publishedAt
+            )}`}
           >
-            {isLive ? (
+            {isLive && !isSearchPage ? (
               <span>{viewCount && FormatView(viewCount)} watching</span>
             ) : (
               <span>
-                {viewCount && FormatView(viewCount)} views • {format(publishedAt)}
+                {viewCount && FormatView(viewCount)} views •{" "}
+                {format(publishedAt)}
               </span>
             )}
           </div>
+          {isSearchPage && (
+            <p className="text-secondary-text text-sm line-clamp-1">
+              {description}
+            </p>
+          )}
           {isLive && (
             <div className="flex gap-1 items-center w-fit px-0.5 bg-red-600 rounded-sm leading-4">
               <SensorsIcon className="text-white" fontSize="small" />
@@ -151,6 +195,12 @@ const VideoContainer = ({
             </div>
           )}
         </div>
+        <Button
+          className="absolute top-0 right-0 rounded-full w-9 h-9 flex items-center justify-center"
+          variant="ghost"
+        >
+          <MoreVertIcon />
+        </Button>
       </div>
     </div>
   );

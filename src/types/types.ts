@@ -17,6 +17,7 @@ export type VideoProps = {
     medium: { url: string };
     default: { url: string };
   };
+  description: string;
   channelThumbnail?: { url: string };
   liveBroadcastContent: string;
   publishedAt: string;
@@ -40,7 +41,7 @@ export type Video = {
       default: { url: string };
     };
     publishedAt: string;
-    tags: [];
+    tags?: [];
     liveBroadcastContent: string;
   };
   statistics: {
