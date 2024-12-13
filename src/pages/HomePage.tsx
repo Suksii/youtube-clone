@@ -32,9 +32,9 @@ const HomePage = () => {
                   channelId={video.snippet.channelId}
                   thumbnails={video.snippet.thumbnails}
                   liveBroadcastContent={video.snippet.liveBroadcastContent}
-                  viewCount={
-                    video.statistics.viewCount && video.statistics?.viewCount
-                  }
+                  // viewCount={
+                  //   video.statistics.viewCount && video.statistics?.viewCount
+                  // }
                   duration={video.contentDetails?.duration}
                   publishedAt={
                     video.snippet.publishedAt && video.snippet?.publishedAt

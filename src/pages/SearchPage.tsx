@@ -1,4 +1,3 @@
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Button from "../components/Button";
 import Categories from "../components/Categories";
 import TuneIcon from "@mui/icons-material/Tune";
@@ -10,19 +9,16 @@ import { useLocation } from "react-router-dom";
 import VideoContainer from "../components/VideoContainer";
 
 const SearchPage = () => {
-
   const { searchedResults } = useAppSelector(
     (state) => state.homePageVideosSlice
   );
   const dispatch = useAppDispatch();
   const location = useLocation();
   const search_query = location.search.split("=")[1];
-  console.log(search_query);
 
   useEffect(() => {
     dispatch(getSearchedVideos(search_query));
   }, [dispatch]);
-
 
   return (
     <div className="flex flex-col gap-5 px-6 w-full items-center">
