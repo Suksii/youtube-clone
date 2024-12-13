@@ -36,21 +36,9 @@ export type Video = {
     channelId: string;
     description: string;
     thumbnails: {
-      high: {
-        url: string;
-        width: number | undefined | undefined;
-        height: number | undefined;
-      };
-      medium: {
-        url: string;
-        width: number | undefined;
-        height: number | undefined;
-      };
-      default: {
-        url: string;
-        width: number | undefined;
-        height: number | undefined;
-      };
+      high: { url: string; width: number; height: number };
+      medium: { url: string; width: number; height: number };
+      default: { url: string; width: number; height: number };
     };
     publishedAt: string;
     tags?: [];
@@ -120,7 +108,7 @@ export type SmallSidebarItemProps = {
 };
 
 export type LargeSidebarItemProps = {
-  icon: ReactNode;
+  icon: ReactNode | string | undefined;
   name: string;
   url: string;
   isActive?: boolean;

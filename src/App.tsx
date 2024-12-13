@@ -11,11 +11,14 @@ function App() {
     <>
       <div className="flex flex-col min-h-screen">
         <Header />
+      <div className="grid grid-cols-[auto,1fr] flex-grow overflow-auto">
+        <Sidebar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/watch/:id" element={<VideoPage />} />
           <Route path="/results?" element={<SearchPage />} />
         </Routes>
+      </div>
       </div>
     </>
   );

@@ -52,27 +52,34 @@ export const Sidebar = () => {
   const subscriptions = [
     {
       id: 1,
-      name: "Channel 1",
+      name: "agadmator's Chess Channel",
       img: "",
-      url: "",
+      thumbnail:
+        "https://yt3.ggpht.com/ytc/AIdro_nu8s0QqnZsbo5bqcCxd7IkKfyacCgItwcLgLyUpPfCR1w=s88-c-k-c0x00ffffff-no-rj",
+      url: "https://www.youtube.com/@agadmator",
     },
     {
       id: 2,
-      name: "Channel 2",
+      name: "PedroTech",
       img: "",
-      url: "",
+      thumbnail:
+        "https://yt3.ggpht.com/KydTS7_isLNxNs3UguRxSZdRQ_gPoOK11ipFsUcjD-pW_8LoFB9K2QKrNl0LrIqlMV5QIyj-i5Q=s88-c-k-c0x00ffffff-no-rj",
+      url: "https://www.youtube.com/@PedroTechnologies",
     },
     {
       id: 3,
-      name: "Channel 3",
+      name: "Coding in Flow",
       img: "",
-      url: "",
+      thumbnail: "https://yt3.ggpht.com/ytc/AIdro_ltuHqsDk-Ezpi1SLwocfwbmzQ9ngXhiM1M0WG3WXFfO1g=s88-c-k-c0x00ffffff-no-rj",
+      url: "https://www.youtube.com/@codinginflow",
     },
     {
       id: 4,
-      name: "Channel 4",
+      name: "Cosden Solutions",
       img: "",
-      url: "",
+      thumbnail:
+        "https://yt3.ggpht.com/yzdPdE5LbrGCd5j5xwBOregV3uQzLtB4L1BGHLk9bSu3ss_cd0nI0kKWM8cwQr1ZtC4UiD0jYwo=s88-c-k-c0x00ffffff-no-rj",
+      url: "https://www.youtube.com/@cosdensolutions",
     },
   ];
 
@@ -202,6 +209,7 @@ export const Sidebar = () => {
               name={subs.name}
               url={subs.url}
               icon={subs.img}
+              thumbnail={subs.thumbnail}
               isActive={false}
             />
           ))}
@@ -243,6 +251,7 @@ const LargeSidebarItem = ({
   icon,
   name,
   url,
+  thumbnail,
   isActive = true,
 }: LargeSidebarItemProps) => {
   return (
@@ -256,7 +265,10 @@ const LargeSidebarItem = ({
         } w-full flex items-center gap-3 rounded-lg p-3`
       )}
     >
-      <div className="w-6 h-6 rounded-full">{icon}</div>
+      {thumbnail && thumbnail.length > 0 && (
+        <img src={thumbnail} alt={name} className="w-6 h-6 rounded-full" />
+      )}
+      {icon && <div className="w-6 h-6 rounded-full">{icon}</div>}
       <p className="whitespace-nowrap overflow-hidden text-ellipsis">{name}</p>
     </a>
   );
