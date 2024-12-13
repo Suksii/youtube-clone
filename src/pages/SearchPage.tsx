@@ -34,6 +34,8 @@ const SearchPage = () => {
         </Button>
       </div>
       {searchedResults.map((searchedVideo) => {
+        console.log(searchedVideo.snippet);
+        
         return (
           <VideoContainer
             key={searchedVideo.id || searchedVideo.etag}

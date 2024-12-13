@@ -13,11 +13,11 @@ export type VideoProps = {
   channelTitle: string;
   channelId: string;
   thumbnails: {
-    high: { url: string };
-    medium: { url: string };
-    default: { url: string };
+    high: { url: string; width: number; height: number };
+    medium: { url: string; width: number; height: number };
+    default: { url: string; width: number; height: number };
   };
-  description: string;
+  description?: string;
   channelThumbnail?: { url: string };
   liveBroadcastContent: string;
   publishedAt: string;
@@ -36,9 +36,21 @@ export type Video = {
     channelId: string;
     description: string;
     thumbnails: {
-      high: { url: string };
-      medium: { url: string };
-      default: { url: string };
+      high: {
+        url: string;
+        width: number | undefined | undefined;
+        height: number | undefined;
+      };
+      medium: {
+        url: string;
+        width: number | undefined;
+        height: number | undefined;
+      };
+      default: {
+        url: string;
+        width: number | undefined;
+        height: number | undefined;
+      };
     };
     publishedAt: string;
     tags?: [];

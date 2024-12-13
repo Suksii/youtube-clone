@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 type VideoProps = {
   isSearchPage: boolean | undefined;
   thumbnails: {
-    high: { url: string };
-    medium: { url: string };
-    default: { url: string };
+    high: { url: string; width: number; height: number };
+    medium: { url: string; width: number; height: number };
+    default: { url: string; width: number; height: number };
   };
   videoId: string;
   duration: string | undefined;
@@ -15,6 +15,8 @@ type VideoProps = {
 const Video = ({ isSearchPage, thumbnails, videoId }: VideoProps) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const videoStyle: CSSProperties = isSearchPage ? { width: `${thumbnails.medium.width}` } : {};
 
   useEffect(() => {
     if (videoRef.current === null) return;
@@ -28,16 +30,17 @@ const Video = ({ isSearchPage, thumbnails, videoId }: VideoProps) => {
   return (
     <Link
       to={`/watch/${videoId}`}
-      className="relative aspect-video"
+      className="relative aspect-video w-full h-full"
       onMouseEnter={() => setIsVideoPlaying(true)}
       onMouseLeave={() => setIsVideoPlaying(false)}
     >
       {thumbnails ? (
         <img
-          src={isSearchPage ? thumbnails.high.url : thumbnails.medium.url}
+          style={videoStyle}
+          src={thumbnails.medium.url}
           className={`${
             isVideoPlaying && !isSearchPage ? "rounded-0" : "rounded-xl"
-          } transition-[border-radius] duration-200 w-full h-full object-cover`}
+          } transition-[border-radius] duration-200 object-cover w-full h-full`}
         />
       ) : (
         <div className="h-full flex items-center justify-center bg-gray-300 text-xl">
@@ -54,7 +57,7 @@ const Video = ({ isSearchPage, thumbnails, videoId }: VideoProps) => {
         src={`https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4`}
         playsInline
         muted
-        className={`absolute inset-0 block h-full object-contain ${
+        className={`absolute inset-0 block object-contain ${
           isSearchPage && "rounded-xl"
         } ${
           isVideoPlaying ? "opacity-100 delay-200" : "opacity-0"

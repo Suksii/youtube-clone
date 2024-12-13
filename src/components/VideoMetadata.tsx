@@ -20,7 +20,7 @@ type VideoMetadataProps = {
 
 const VideoMetadata = ({isSearchPage, channelThumbnail, channelTitle, isLive, title, viewCount, description, publishedAt}: VideoMetadataProps) => {
   return (
-    <div className="flex gap-2 w-full relative">
+    <div className="flex gap-2 w-full relative pr-8">
         {!isSearchPage && (
           <Link to={`/`} className="flex-shrink-0 relative h-fit">
             {channelThumbnail && channelThumbnail.url ? (
@@ -42,7 +42,7 @@ const VideoMetadata = ({isSearchPage, channelThumbnail, channelTitle, isLive, ti
           </Link>
         )}
         <div className="flex flex-col gap-1">
-          <Link to={``} className="font-bold line-clamp-2" title={title}>
+          <Link to={``} className={`font-semibold line-clamp-2 ${isSearchPage ? 'text-xl' : ''}`} title={title}>
             {title}
           </Link>
           {!isSearchPage && (
@@ -105,7 +105,7 @@ const VideoMetadata = ({isSearchPage, channelThumbnail, channelTitle, isLive, ti
             )}
           </div>
           {isSearchPage && (
-            <p className="text-secondary-text text-sm line-clamp-1">
+            <p className="text-secondary-text text-sm line-clamp-1 py-2">
               {description}
             </p>
           )}

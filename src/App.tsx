@@ -4,6 +4,7 @@ import VideoPage from "./pages/VideoPage";
 import HomePage from "./pages/HomePage";
 import { Route, Routes } from "react-router-dom";
 import SearchPage from "./pages/SearchPage";
+import { Sidebar } from "./components/Sidebar";
 
 function App() {
   return (

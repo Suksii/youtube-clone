@@ -48,22 +48,26 @@ const VideoContainer = ({
       className={`flex ${isSearchPage ? "flex-row" : "flex-col"} gap-2`}
       key={videoId}
     >
-      <Video
-        isSearchPage={isSearchPage}
-        thumbnails={thumbnails}
-        videoId={videoId}
-        duration={duration}
-      />
-      <VideoMetadata
-        isLive={isLive}
-        isSearchPage={isSearchPage}
-        channelThumbnail={channelThumbnail}
-        channelTitle={channelTitle}
-        title={title}
-        description={description}
-        viewCount={viewCount}
-        publishedAt={publishedAt}
-      />
+      <div className={isSearchPage ? "flex-[3]" : ""}>
+        <Video
+          isSearchPage={isSearchPage}
+          thumbnails={thumbnails}
+          videoId={videoId}
+          duration={duration}
+        />
+      </div>
+      <div className={isSearchPage ? "flex-[5]" : ""}>
+        <VideoMetadata
+          isLive={isLive}
+          isSearchPage={isSearchPage}
+          channelThumbnail={channelThumbnail}
+          channelTitle={channelTitle}
+          title={title}
+          description={description}
+          viewCount={viewCount}
+          publishedAt={publishedAt}
+        />
+      </div>
     </div>
   );
 };
