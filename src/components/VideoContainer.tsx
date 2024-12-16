@@ -45,10 +45,14 @@ const VideoContainer = ({
 
   return (
     <div
-      className={`flex ${isSearchPage ? "flex-row" : "flex-col"} gap-2`}
+      className={`flex ${isSearchPage ? "flex-row" : "flex-col"} gap-2 max-w-screen-lg mx-auto w-full`}
       key={videoId}
     >
-      <div className={isSearchPage ? "flex-[3]" : ""}>
+      <div className={`${
+        isSearchPage
+          ? "md:flex-[3]"
+          : ""
+      }`}>
         <Video
           isSearchPage={isSearchPage}
           thumbnails={thumbnails}
@@ -56,7 +60,11 @@ const VideoContainer = ({
           duration={duration}
         />
       </div>
-      <div className={isSearchPage ? "flex-[5]" : ""}>
+      <div
+        className={`${
+          isSearchPage ? "md:flex-[5]" : ""
+        }`}
+      >
         <VideoMetadata
           isLive={isLive}
           isSearchPage={isSearchPage}

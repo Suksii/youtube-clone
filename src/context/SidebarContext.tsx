@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { SidebarContextProps, SidebarContextType } from "../types/types";
+import { useLocation } from "react-router-dom";
 
 const SidebarContext = createContext<SidebarContextType | null>(null);
 
@@ -7,6 +8,10 @@ export const SidebarProvider = ({ children }: SidebarContextProps) => {
   const [isSmallOpen, setIsSmallOpen] = useState(false);
   const [isLargeOpen, setIsLargeOpen] = useState(false);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  const location = useLocation();
+
+  const isVideoPage = location.pathname.startsWith("/watch/");
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -46,6 +51,7 @@ export const SidebarProvider = ({ children }: SidebarContextProps) => {
         toggleSidebar,
         closeSidebar,
         isSmallScreen,
+        isVideoPage,
       }}
     >
       {children}

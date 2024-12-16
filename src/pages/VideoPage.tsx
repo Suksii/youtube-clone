@@ -47,9 +47,9 @@ const VideoPage = () => {
       : description;
 
   return (
-    <div className="py-4 px-6 md:px-24">
+    <div className="py-4 px-6 flex-grow">
       <div className="flex flex-col md:flex-row gap-6">
-        <div style={{ flex: 3 }} className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 md:flex-[3]">
           <iframe
             src={`https://www.youtube.com/embed/${id}`}
             allowFullScreen
@@ -155,7 +155,7 @@ const VideoPage = () => {
           </div>
           <Comments videoId={id} commentCount={video?.statistics?.commentCount}/>
         </div>
-        <div style={{ flex: 1 }}>
+        <div className="md:flex-[1] w-full">
           <RelatedVideos relatedToVideoId={id}/>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { CSSProperties, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import SearchPage from "../pages/SearchPage";
 
 type VideoProps = {
   isSearchPage: boolean | undefined;
@@ -15,8 +16,6 @@ type VideoProps = {
 const Video = ({ isSearchPage, thumbnails, videoId }: VideoProps) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState<boolean>(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  const videoStyle: CSSProperties = isSearchPage ? { width: `${thumbnails.medium.width}` } : {};
 
   useEffect(() => {
     if (videoRef.current === null) return;
@@ -36,7 +35,6 @@ const Video = ({ isSearchPage, thumbnails, videoId }: VideoProps) => {
     >
       {thumbnails ? (
         <img
-          style={videoStyle}
           src={thumbnails.medium.url}
           className={`${
             isVideoPlaying && !isSearchPage ? "rounded-0" : "rounded-xl"

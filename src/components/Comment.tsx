@@ -14,7 +14,7 @@ const Comment = ({
 }: CommentsProps) => {
   return (
     <div className="flex gap-4">
-      <Link to={authorChannelUrl}>
+      <Link to={authorChannelUrl} className="flex-shrink-0">
         {authorProfileImageUrl ? (
           <img
             src={authorProfileImageUrl}
@@ -22,7 +22,7 @@ const Comment = ({
             className="flex-shrink-0 h-10 w-10 rounded-full text-[10px]"
           />
         ) : (
-          <div className="flex items-center justify-center h-10 w-10 bg-green-600 rounded-full"></div>
+          <div className="flex items-center justify-center h-10 w-10 flex-shrink-0 bg-green-600 rounded-full"></div>
         )}
       </Link>
       <div className="flex flex-col">

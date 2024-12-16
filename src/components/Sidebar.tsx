@@ -23,7 +23,7 @@ import {
 import LogoSection from "./LogoSection";
 
 export const Sidebar = () => {
-  const { isLargeOpen, isSmallOpen, closeSidebar, isSmallScreen } =
+  const { isLargeOpen, isSmallOpen, closeSidebar, isSmallScreen, isVideoPage } =
     useSidebar();
 
   const sideBarItems = [
@@ -70,7 +70,8 @@ export const Sidebar = () => {
       id: 3,
       name: "Coding in Flow",
       img: "",
-      thumbnail: "https://yt3.ggpht.com/ytc/AIdro_ltuHqsDk-Ezpi1SLwocfwbmzQ9ngXhiM1M0WG3WXFfO1g=s88-c-k-c0x00ffffff-no-rj",
+      thumbnail:
+        "https://yt3.ggpht.com/ytc/AIdro_ltuHqsDk-Ezpi1SLwocfwbmzQ9ngXhiM1M0WG3WXFfO1g=s88-c-k-c0x00ffffff-no-rj",
       url: "https://www.youtube.com/@codinginflow",
     },
     {
@@ -142,12 +143,14 @@ export const Sidebar = () => {
     },
   ];
 
+  console.log("isVideoPage", isVideoPage);
+
   return (
     <>
       <div
         className={`sticky top-0 overflow-y-auto hidden sm:flex flex-col ml-1 scrollbar-hidden ${
           isLargeOpen ? "lg:hidden" : "lg:flex"
-        }`}
+        } ${isVideoPage ? "opacity-0" : ""}`}
       >
         {sideBarItems.map((item) => (
           <SmallSidebarItem
@@ -171,7 +174,7 @@ export const Sidebar = () => {
           isSmallOpen
             ? "flex max-h-screen"
             : `${isSmallScreen ? "-translate-x-full" : "hidden"}`
-        }`}
+        } lg:max-h-screen lg:overflow-y-auto`}
       >
         <div className="lg:hidden px-4 py-2 sticky top-0 bg-white">
           <LogoSection />

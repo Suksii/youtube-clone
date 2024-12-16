@@ -108,9 +108,10 @@ export type SmallSidebarItemProps = {
 };
 
 export type LargeSidebarItemProps = {
-  icon: ReactNode | string | undefined;
+  icon?: ReactNode;
   name: string;
   url: string;
+  thumbnail?: string;
   isActive?: boolean;
 };
 export type LargeSidebarProps = {
@@ -132,6 +133,7 @@ export type SidebarContextType = {
   isLargeOpen: boolean;
   isSmallOpen: boolean;
   isSmallScreen: boolean;
+  isVideoPage: boolean;
   toggleSidebar: () => void;
   closeSidebar: () => void;
 };

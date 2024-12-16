@@ -21,7 +21,7 @@ const SearchPage = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col gap-5 px-6 w-full items-center">
+    <div className="flex flex-col gap-5 px-6 mx-auto w-full items-center max-w-7xl">
       <div className="flex justify-between gap-2 items-center w-full max-w-screen-xl">
         <Categories />
         <Button
