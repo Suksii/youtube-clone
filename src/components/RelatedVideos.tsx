@@ -54,7 +54,7 @@ const RelatedVideos = ({ relatedToVideoId }: { relatedToVideoId?: string }) => {
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [thumbnailIndex, setThumbnailIndex] = useState<number[]>(
-    relatedVideos.map(() => 0)
+    relatedVideosConst.map(() => 0)
   );
 
   useEffect(() => {

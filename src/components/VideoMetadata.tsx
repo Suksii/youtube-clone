@@ -13,7 +13,7 @@ type VideoMetadataProps = {
   channelTitle: string;
   isLive: boolean;
   title: string;
-  viewCount: string | undefined;
+  viewCount: string;
   description: string | undefined;
   publishedAt: string;
 };
@@ -36,7 +36,9 @@ const VideoMetadata = ({
             <img
               src={channelThumbnail.url}
               title={channelTitle}
-              className={`${isLive && !isSearchPage ? "ring-2 ring-red-600" : ""} ${
+              className={`${
+                isLive && !isSearchPage ? "ring-2 ring-red-600" : ""
+              } ${
                 isSearchPage ? "w-8 h-8" : "w-12 h-12"
               } rounded-full object-cover`}
             />
@@ -53,7 +55,7 @@ const VideoMetadata = ({
       <div className="flex flex-col gap-1">
         <Link
           to={``}
-          className={`font-semibold text-wrap line-clamp-2 ${
+          className={`font-semibold text-wrap line-clamp-2 leading-5 ${
             isSearchPage ? "text-xl" : ""
           }`}
           title={title}
@@ -79,9 +81,9 @@ const VideoMetadata = ({
                 <img
                   src={channelThumbnail.url}
                   title={channelTitle}
-                  className={`${
-                    isLive ? "ring-2 ring-red-600" : ""
-                  } ${isSearchPage ? "w-6 h-6" : "w-12 h-12"} rounded-full object-cover`}
+                  className={`${isLive ? "ring-2 ring-red-600" : ""} ${
+                    isSearchPage ? "w-6 h-6" : "w-12 h-12"
+                  } rounded-full object-cover`}
                 />
               ) : (
                 <div className="w-12 h-12 rounded-full bg-green-300" />

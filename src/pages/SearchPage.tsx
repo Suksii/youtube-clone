@@ -17,11 +17,13 @@ const SearchPage = () => {
   const search_query = location.search.split("=")[1];
 
   useEffect(() => {
-    dispatch(getSearchedVideos(search_query));
-  }, [dispatch]);
+    if (search_query) {
+      dispatch(getSearchedVideos(search_query));
+    }
+  }, [dispatch, search_query]);
 
   return (
-    <div className="flex flex-col gap-5 px-6 mx-auto w-full items-center max-w-7xl">
+    <div className="flex flex-col gap-5 px-6 pb-6 mx-auto w-full items-center max-w-7xl">
       <div className="flex justify-between gap-2 items-center w-full max-w-screen-xl">
         <Categories />
         <Button
@@ -34,8 +36,6 @@ const SearchPage = () => {
         </Button>
       </div>
       {searchedResults.map((searchedVideo) => {
-        console.log(searchedVideo.snippet);
-        
         return (
           <VideoContainer
             key={searchedVideo.id || searchedVideo.etag}
@@ -46,11 +46,6 @@ const SearchPage = () => {
             thumbnails={searchedVideo.snippet.thumbnails}
             liveBroadcastContent={searchedVideo.snippet.liveBroadcastContent}
             description={searchedVideo.snippet.description}
-            // viewCount={
-            //   searchedVideo.statistics.viewCount &&
-            //   searchedVideo.statistics?.viewCount
-            // }
-            duration={searchedVideo.contentDetails?.duration}
             publishedAt={
               searchedVideo.snippet.publishedAt &&
               searchedVideo.snippet?.publishedAt

@@ -1,4 +1,3 @@
-import { Sidebar } from "../components/Sidebar";
 import Categories from "../components/Categories";
 import VideoContainer from "../components/VideoContainer";
 import { useEffect } from "react";
@@ -24,16 +23,12 @@ const HomePage = () => {
             return (
               <VideoContainer
                 key={video.id || video.etag}
-                videoId={video.id}
+                videoId={video.id || video.etag}
                 title={video.snippet.title}
                 channelTitle={video.snippet.channelTitle}
                 channelId={video.snippet.channelId}
                 thumbnails={video.snippet.thumbnails}
                 liveBroadcastContent={video.snippet.liveBroadcastContent}
-                // viewCount={
-                //   video.statistics.viewCount && video.statistics?.viewCount
-                // }
-                duration={video.contentDetails?.duration}
                 publishedAt={
                   video.snippet.publishedAt && video.snippet?.publishedAt
                 }

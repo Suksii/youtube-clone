@@ -45,7 +45,7 @@ export type Video = {
     liveBroadcastContent: string;
   };
   statistics: {
-    viewCount: string;
+    viewCount?: string;
     likeCount: string | undefined;
     commentCount: string;
   };

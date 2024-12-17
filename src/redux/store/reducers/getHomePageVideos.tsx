@@ -8,7 +8,7 @@ export const getHomePageVideos = createAsyncThunk(
     try {
       const { data } = await request.get("/videos", {
         params: {
-          part: "snippet, contentDetails, statistics",
+          part: "snippet",
           maxResults: 20,
           pageToken,
           chart: "mostPopular",
@@ -129,7 +129,7 @@ export const getSearchedVideos = createAsyncThunk(
     try {
       const { data } = await request.get("/search", {
         params: {
-          part: "snippet",
+          part: "snippet",   
           q: searchTerm,
           maxResults: 20,
           type: "video",
