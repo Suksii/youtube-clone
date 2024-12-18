@@ -18,4 +18,8 @@ This is a YouTube clone project built in React using Typescript.
 
 ![Screenshot 2024-12-17 184655](https://github.com/user-attachments/assets/c7a6c18c-b7e8-437c-881d-795390d05715)
 
+## Search by category
+
+![Screenshot 2024-12-18 162439](https://github.com/user-attachments/assets/ee199310-868c-466f-813b-45886e7338af)
+
 
